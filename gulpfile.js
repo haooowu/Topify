@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
+const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require('browser-sync').create();
 const reload = browserSync.reload;
 //a task to compile our sass
@@ -27,6 +28,12 @@ gulp.task('scripts', () => {
 		.pipe(reload({stream: true}));
 });
 
+gulp.task('images', () => {
+	return gulp.src('./dev/images/**/*')
+		.pipe(gulp.dest('./public/images'))
+		.pipe(reload({stream: true}));
+});
+
 //a task to watch all of my other tasks
 gulp.task('watch', function() {
 	gulp.watch('./dev/scripts/*.js', ['scripts']);
@@ -40,4 +47,4 @@ gulp.task('browser-sync', () => {
   })
 });
 
-gulp.task('default', ['browser-sync','styles', 'scripts', 'watch']);
+gulp.task('default', ['browser-sync','styles', 'images', 'scripts', 'watch']);
