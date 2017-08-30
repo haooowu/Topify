@@ -1,5 +1,5 @@
 @import 'setup';
-@import "mixins";
+@import 'mixins';
 
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
@@ -8,10 +8,10 @@
 		display: inline;
 }
 
-.container {
-	max-width: 900px;
-	margin: 0 auto;
-}
+// .container {
+// 	max-width: 900px;
+// 	margin: 0 auto;
+// }
 
 body{
 	color: blue;
