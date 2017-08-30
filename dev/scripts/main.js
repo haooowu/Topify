@@ -1,5 +1,6 @@
 
-console.log("yall running np");
+// console.log("yall running nnnnnp");
+var headers;
 //https://github.com/hackeryou/json-proxy
 var init = function(){
 	$.ajax({//poxy
@@ -50,7 +51,7 @@ var spotifyChartsTop = function(){// geting toplist by category
 		url:`https://api.spotify.com/v1/users/spotifycharts/playlists/37i9dQZEVXbKj23U1GF4IR`,
 		method: 'GET',
 		dataType: 'json',
-		headers
+		headers 
 	}).then((data) => {
 		// console.log(data);
 		// console.log(data.tracks);
@@ -74,4 +75,21 @@ var getTruckById = function(){
 		//	**/.artist
 		// 	**/.album
 	});
+
+// 	function msToTime(ms) {
+// 		secs = Math.Round(myDuration/(1000*60))%60;
+// 	 	mins = Math.Round(myDuration/(1000*60*60));
+
+// 	 	return result = `${mins} : ${secs}`;
+// 	}
+
+// 	console.log(msTotime(1000,5000));
+// }
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
 }
