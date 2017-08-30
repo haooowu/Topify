@@ -1,10 +1,17 @@
 @import 'setup';
 @import 'mixins';
 
-.container {
-	max-width: 900px;
-	margin: 0 auto;
+// font-family: 'Rubik', sans-serif;
+// font-family: 'Roboto Mono', monospace;
+
+.gallery {
+		display: inline;
 }
+
+// .container {
+// 	max-width: 900px;
+// 	margin: 0 auto;
+// }
 
 body{
 	color: blue;
