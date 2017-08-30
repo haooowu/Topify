@@ -1,4 +1,12 @@
 @import 'setup';
+@import "mixins";
+
+// font-family: 'Rubik', sans-serif;
+// font-family: 'Roboto Mono', monospace;
+
+.gallery {
+		display: inline;
+}
 
 .container {
 	max-width: 900px;
