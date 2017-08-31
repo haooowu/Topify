@@ -1,18 +1,21 @@
-
-// console.log("yall running nnnnnp");
-var headers;
-//https://github.com/hackeryou/json-proxy
-var init = function(){
+const spotifyApp = {};
+const canadaTop = "37i9dQZEVXbKj23U1GF4IR";
+const canadaViral = "37i9dQZEVXbKfIuOAZrk7G";
+const globalTop = "37i9dQZEVXbMDoHDwVN2tF";
+const globalViral = "37i9dQZEVXbLiRSasKsNU9";
+//TODO: dynamically change option
+spotifyApp.albumInfo = {};
+let headers;
+//init
+spotifyApp.tokenRequest = function(){
 	$.ajax({//poxy
 		url: 'http://proxy.hackeryou.com',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json'
-		},
-		data: JSON.stringify({//???
-			//https://developer.spotify.com/web-api/authorization-guide/#implicit_grant_flow
-			//4. Your application requests refresh and access tokens
+		},	//DOC: 4. Your application requests refresh and access tokens
+		data: JSON.stringify({//https://developer.spotify.com/web-api/authorization-guide/#implicit_grant_flow
 			reqUrl: 'https://accounts.spotify.com/api/token',
 			params: {
 				grant_type: 'client_credentials'
@@ -21,75 +24,99 @@ var init = function(){
 				'Authorization': 'Basic MTY5Y2EwNGU1ODk5NGQwNWJhOWRmYzcxMjE5YzQ2NGQ6YmUwNWI1ZTc3NGE2NDVhMjllNWYzZjFiOTQyMDExMDI'
 			}
 		})
-	})//https://developer.spotify.com/web-api/search-item/
-	.then((data) => {
-		// console.log(data);
+	}).then((data) => {
 		headers = {'Authorization': `${data.token_type} ${data.access_token}`}
-		console.log(headers);
-		// getSpotifyToplist(); dayily top hits actually
-		spotifyChartsTop();
-	})
-}//end of init
+		spotifyApp.chartsPlaylist();
+	});
+}//end of tokenRequest
 
-init()
-// var getSpotifyToplist = function(){// geting toplist by category
-// 	$.ajax({//https://developer.spotify.com/web-api/console/get-category-playlists/
-// 		url:`https://api.spotify.com/v1/browse/categories/toplists/playlists`,
-// 		method: 'GET',
-// 		dataType: 'json',
-// 		headers,
-// 		data: {
-// 			limit: 50
-// 		}
-// 	}).then((data) => {
-// 		console.log(data.playlists.items[0]);
-// 	});
-// };// this can ultimately grab by owner_id: spotify && id:37i9dQZF1DXcBWIGoYBM5M
-
-var spotifyChartsTop = function(){// geting toplist by category
-	$.ajax({//https://developer.spotify.com/web-api/console/get-playlist/
-		url:`https://api.spotify.com/v1/users/spotifycharts/playlists/37i9dQZEVXbKj23U1GF4IR`,
+spotifyApp.chartsPlaylist = function(){// geting toplist by category
+	spotifyApp.topFifty = $.ajax({//https://developer.spotify.com/web-api/console/get-playlist/
+		url:`https://api.spotify.com/v1/users/spotifycharts/playlists/${canadaTop}`,
 		method: 'GET',
 		dataType: 'json',
-		headers 
-	}).then((data) => {
-		// console.log(data);
-		// console.log(data.tracks);
-		console.log(data.tracks.items);//50 daily tops objs
-		console.log(data.tracks.items[0].track);
-		console.log(data.tracks.items[0].track);
+		headers,
+	});
+	$.when(spotifyApp.topFifty).then(function(data){
+		let totalTrack = data.tracks.items;
+		let albumId,imageSrc;
+		for (let i = 0; i < totalTrack.length; i++){
+			let trackInfo = {};
+			let artistsInfo = {};
+			//populate DOM gallery
+			albumId = totalTrack[i].track.album.id;
+			imageSrc = totalTrack[i].track.album.images[1].url;
+			let cardImage = `<img src=${imageSrc}>`;
+			let cardWrapper = $('<div class="imgHolder">').attr('id', `${albumId}`).append(cardImage);
+			$("#gallery").append(cardWrapper);
+
+			//pushing information, rearrange only the needed info
+			trackInfo.trackName = totalTrack[i].track.name;
+			trackInfo.duration = spotifyApp.transformMills(totalTrack[i].track.duration_ms);
+			for (let k = 0; k < totalTrack[i].track.artists.length; k++){
+				artistsInfo[totalTrack[i].track.artists[k].name] = totalTrack[i].track.artists[k].id
+			}
+			trackInfo.artists = artistsInfo;
+			trackInfo.popularity = totalTrack[i].track.popularity;
+			trackInfo.redirectLink = totalTrack[i].track.external_urls.spotify;
+			trackInfo.albumType = totalTrack[i].track.album.album_type;
+			trackInfo.albumName = totalTrack[i].track.name;
+			trackInfo.explicit = totalTrack[i].track.explicit;
+			spotifyApp.albumInfo[albumId] = trackInfo;
+		}//end for loop
+		console.log(spotifyApp.albumInfo)
+		spotifyApp.galleryListener();
 	});
 };
 
-var getTruckById = function(){
+//onlick listener for album
+spotifyApp.galleryListener =function(){
+	let selectedAlbum;
+	$(".imgHolder").click(function(e){
+		let contentId = $(this).attr("id");//targeting DOM ID
+		selectedAlbum = spotifyApp.albumInfo[contentId];
+
+		console.log((spotifyApp.albumInfo[contentId]))
+		//ajax for get album info
+		spotifyApp.getAlbumtById(contentId);
+		//TODO: populate the info correspondingly
+	});
+}
+
+//genre always emtpy...
+spotifyApp.getAlbumtById = function(album){
 	$.ajax({//https://developer.spotify.com/web-api/console/get-track/?id=3n3Ppam7vgaVa1iaRUc9Lp
-		url:`https://api.spotify.com/v1/users/spotifycharts/playlists/37i9dQZEVXbKj23U1GF4IR`,
+		url:`https://api.spotify.com/v1/albums/${album}`, //album_id
 		method: 'GET',
 		dataType: 'json',
-		headers
+		headers,
 	}).then((data) => {
-		console.log(data);
-		console.log(data.tracks);
-		console.log(data.tracks.items);//50 daily tops objs
-		//console.log(data.tracks.items[0].track);
-		//	**/.artist
-		// 	**/.album
+		console.log("emblum_popularity: " + data.popularity);
+		console.log("release_date: " + data.release_date);
+		console.log("label: " + data.label);
+		console.log("total track: " + data.tracks.items.length);
+		data.tracks.items.forEach(function(element, index) {
+			console.log(index+1 + ". " + element.name);
+		});
+		//TODO: populate the info correspondingly
 	});
+}
+/*
+	helper functions
+*/
 
-// 	function msToTime(ms) {
-// 		secs = Math.Round(myDuration/(1000*60))%60;
-// 	 	mins = Math.Round(myDuration/(1000*60*60));
-
-// 	 	return result = `${mins} : ${secs}`;
-// 	}
-
-// 	console.log(msTotime(1000,5000));
-// }
-
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+//helper function
+spotifyApp.transformMills = function(millis) {
+	let minutes = Math.floor(millis / 60000);
+	let seconds = ((millis % 60000) / 1000).toFixed(0);
+	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
+//TODO: helper function, conact string name, spereate by comma,clickable with each artists page
+spotifyApp.pushArtists = function(list){
+	//
 }
+
+$(function(){
+	spotifyApp.tokenRequest();
+});
