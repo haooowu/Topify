@@ -46,7 +46,7 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 			//populate DOM gallery
 			albumId = totalTrack[i].track.album.id;
 			imageSrc = totalTrack[i].track.album.images[1].url;
-			let cardImage = `<img src=${imageSrc}>`;
+			let cardImage = `<div class="imageTile"><div class="imageMedia"><img src=${imageSrc}></div></div>`;
 			let cardWrapper = $('<div class="imgHolder">').attr('id', `${albumId}`).append(cardImage);
 			$("#gallery").append(cardWrapper);
 
