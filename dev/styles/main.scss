@@ -4,15 +4,30 @@
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
 
-.gallery {
-		display: inline;
+.wrapper {
+	width: 1080px;
+	max-width: 90%;
 }
 
-// .container {
-// 	max-width: 900px;
-// 	margin: 0 auto;
-// }
+body {
+	background-color: black;
+	color: white;
+}
 
-body{
-	color: blue;
+#info {
+	color: white;
+}
+
+.logo img {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.logo h1 {
+	float: left;
+}
+
+header {
+	clear: both;
 }
