@@ -79,7 +79,16 @@ spotifyApp.galleryListener =function(){
 		console.log((spotifyApp.albumInfo[contentId]))
 		//ajax for get album info
 		spotifyApp.getAlbumtById(contentId);
-		//TODO: populate the info correspondingly
+		$("#info").empty()
+		$("#info").append(`${Object.keys(selectedAlbum.artists)[0]}`)
+		//add second/third/fourth... artist 
+		$("#info").append(`<p>${selectedAlbum.albumName}</p>`)
+		$("#info").append(`<p>${selectedAlbum.trackName}</p>`)
+		$("#info").append(`<p>${selectedAlbum.duration}</p>`)
+		$("#info").append(`<p>${selectedAlbum.popularity}</p>`)
+		$("#info").append(`<p>${selectedAlbum.albumType}</p>`)
+		$("#info").append(`<p>${selectedAlbum.explicit}</p>`)
+		$("#info").append(`<a href ="${selectedAlbum.redirectLink}"></a>`)
 	});
 }
 
@@ -98,6 +107,10 @@ spotifyApp.getAlbumtById = function(album){
 		data.tracks.items.forEach(function(element, index) {
 			console.log(index+1 + ". " + element.name);
 		});
+		$("#info").append(`<p>${data.popularity}</p>`)
+		$("#info").append(`<p>${data.release_date}</p>`)
+		$("#info").append(`<p>${data.label}</p>`)
+		$("#info").append(`<p>${data.tracks.items.length}</p>`)
 		//TODO: populate the info correspondingly
 	});
 }
