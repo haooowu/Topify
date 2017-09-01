@@ -10,11 +10,11 @@
 
 .wrapper {
 	width: 1080px;
+	margin: 0 auto;
 }
 
 body {
-	background-color: #000;
-	color: white;
+	background-color: red;
 }
 
 /*            HEADER
@@ -75,11 +75,35 @@ header {
 =========================================*/
 
 #info {
-	float: left;
+	display: inline-block;
 	color: white;
 	font-family: 'Roboto Mono', monospace;
+	height: 400px;
 }
 
 #gallery {
-	background-color: #000;
+	background-color: green;
+	height: 300px;
+}
+
+.row {
+	width: 100%;
+}
+
+.row__inner {
+	font-size: 0;
+	white-space: nowrap;
+	padding-bottom: 10px;
+}
+
+.imageTile {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin-right: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.imageTile__img {
 }
