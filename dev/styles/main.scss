@@ -5,8 +5,8 @@
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
 
-/*            WRAPPER
-=========================================*/
+// /*            WRAPPER
+// =========================================*/
 
 .wrapper {
 	width: 1080px;
@@ -14,49 +14,100 @@
 }
 
 body {
+	background-color: #000;
+	color: white;
 	background-color: red;
 }
 
-/*            HEADER
-=========================================*/
+h1 {
+	margin: 0;
+}
+
+ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+// /*            HEADER
+// =========================================*/
 
 .wrapper {
-	border: 1px solid #fff;
+	// border: 1px solid #fff;
 }
 
 img.logo {
-	width: 50px;
-	height: 50px;
 	float: left;
-	background: #fff;
+	// width: 10%;
+	height: 50px;
+	display: inline-block;
+	// background: #fff;
+	margin: 0;
+}
+
+header {
+	padding: 20px;
+	background: #000;
 }
 
 .header--left.clearfix {
-	width: 20%;
+	display: inline-block;
+	width: 30%;
 	margin: 0;
-	border: 1px solid #fff;
+	// border: 1px solid #fff;
 }
 
 .header--left h1 {
 	float: left;
-	border: 1px solid white;
-	font-family: 'Rubik', sans-serif;
-	border: 1px solid #fff;
+	padding: 15px 0 0 20px;
+	color: #fff;
+	font-family: $headingFont;
+	font-size: 22px;
+	letter-spacing: 1.6px;
+	text-transform: uppercase;
+	// font-weight: 900;
+	// border: 1px solid #fff;
 }
 
-.header--right {
-	float: right;
-	border: 1px solid #fff;
+.header--right.clearfix {
+	// width: 49%;
+	// clear: both;
+	display: inline-block;
+	// border: 1px solid #fff;
+	// margin-left: 90px;
 }
 
 .header--right ul li {
 	float: left;
+	padding-bottom: 15px;
+}
+
+li {
+	margin-right: 30px;
+}
+
+a {
+	color: $brandColour2;
+	font-family: $bodyFont;
+	letter-spacing: 1.4px;
+	font-size: 12px;
+}
+
+a:hover {
+	color: $brandColour1;
+}
+
+li:last-child{
+		margin: 0;
 }
 
 header {
 	padding-bottom: 400px;
-	border: 1px solid #fff;
-	clear: both;
+	// border: 1px solid #fff;
+	// clear: both;
 }
 
 #gallery {
@@ -71,8 +122,8 @@ header {
 	}
 }
 
-/*            MAIN
-=========================================*/
+// /*            MAIN
+// =========================================*/
 
 #info {
 	display: inline-block;
@@ -83,6 +134,9 @@ header {
 
 #gallery {
 	overflow-x: auto;
+	background-color: #000;
+	background-color: green;
+	height: 300px;
 }
 
 ::-webkit-scrollbar {display:none;}
@@ -116,3 +170,4 @@ header {
 	margin-left: 1%;
 	margin-right: 1%;
 }
+
