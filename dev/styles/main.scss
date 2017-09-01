@@ -82,12 +82,14 @@ header {
 }
 
 #gallery {
-	background-color: green;
-	height: 300px;
+	overflow-x: auto;
 }
+
+::-webkit-scrollbar {display:none;}
 
 .row {
 	width: 100%;
+	position: absolute;
 }
 
 .row__inner {
@@ -105,5 +107,12 @@ header {
 	cursor: pointer;
 }
 
-.imageTile__img {
+.imgHolder {
+	transition: all 0.3s;
+}
+
+.imgHolder:hover {
+	transform: scale(1.25);
+	margin-left: 1%;
+	margin-right: 1%;
 }
