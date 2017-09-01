@@ -10,11 +10,17 @@
 
 .wrapper {
 	width: 1080px;
+	margin: 0 auto;
 }
 
 body {
+<<<<<<< HEAD
 	background-color: #000;
 	color: white;
+=======
+
+	background-color: red;
+>>>>>>> 6a72a63a1ba0a7fda9f682fa9375b9be6e741717
 }
 
 /*            HEADER
@@ -75,11 +81,40 @@ header {
 =========================================*/
 
 #info {
-	float: left;
+	display: inline-block;
 	color: white;
 	font-family: 'Roboto Mono', monospace;
+	height: 400px;
 }
 
 #gallery {
+<<<<<<< HEAD
 	background-color: #000;
+=======
+	background-color: green;
+	height: 300px;
+}
+
+.row {
+	width: 100%;
+}
+
+.row__inner {
+	font-size: 0;
+	white-space: nowrap;
+	padding-bottom: 10px;
+}
+
+.imageTile {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin-right: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.imageTile__img {
+  
+>>>>>>> 6a72a63a1ba0a7fda9f682fa9375b9be6e741717
 }
