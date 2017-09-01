@@ -10,7 +10,7 @@
 }
 
 body {
-	background-color: black;
+	background-color: blue;
 	color: white;
 }
 
@@ -30,4 +30,16 @@ body {
 
 header {
 	clear: both;
+}
+
+#gallery {
+	position: absolute;
+}
+
+.imgHolder {
+	display: inline-block;
+	// width: 20%;
+	img {
+		width: 100%;
+	}
 }
