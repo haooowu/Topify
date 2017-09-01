@@ -1,5 +1,6 @@
 @import 'setup';
 @import 'mixins';
+@import 'variables';
 
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
@@ -12,29 +13,49 @@
 }
 
 body {
-	background-color: blue;
+	background-color: #000;
 	color: white;
-	background-color: white;
 }
 
 /*            HEADER
 =========================================*/
 
-.logo img {
+.wrapper {
+	border: 1px solid #fff;
+}
+
+img.logo {
 	width: 50px;
 	height: 50px;
 	float: left;
-	border: 1px solid white;
+	background: #fff;
 }
 
-.logo h1 {
+.header--left.clearfix {
+	width: 20%;
+	margin: 0;
+	border: 1px solid #fff;
+}
+
+.header--left h1 {
 	float: left;
-	vertical-align: center;
 	border: 1px solid white;
 	font-family: 'Rubik', sans-serif;
+	border: 1px solid #fff;
+}
+
+.header--right {
+	float: right;
+	border: 1px solid #fff;
+}
+
+.header--right ul li {
+	float: left;
 }
 
 header {
+	padding-bottom: 400px;
+	border: 1px solid #fff;
 	clear: both;
 }
 
@@ -60,5 +81,5 @@ header {
 }
 
 #gallery {
-	background-color: green;
+	background-color: #000;
 }
