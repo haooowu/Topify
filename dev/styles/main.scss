@@ -41,10 +41,10 @@ a {
 
 img.logo {
 	float: left;
-	width: 50px;
+	// width: 10%;
 	height: 50px;
 	display: inline-block;
-	background: #fff;
+	// background: #fff;
 	margin: 0;
 }
 
@@ -62,9 +62,12 @@ header {
 
 .header--left h1 {
 	float: left;
-	padding: 5px 0 0 20px;
+	padding: 15px 0 0 20px;
 	color: #fff;
-	// font-family: 'Rubik', sans-serif;
+	font-family: $headingFont;
+	font-size: 22px;
+	letter-spacing: 1.6px;
+	text-transform: uppercase;
 	// font-weight: 900;
 	// border: 1px solid #fff;
 }
@@ -74,7 +77,7 @@ header {
 	// clear: both;
 	display: inline-block;
 	// border: 1px solid #fff;
-	margin-left: 90px;
+	// margin-left: 90px;
 }
 
 .header--right ul li {
@@ -83,11 +86,18 @@ header {
 }
 
 li {
-	margin-right: 50px;
+	margin-right: 30px;
 }
 
 a {
 	color: $brandColour2;
+	font-family: $bodyFont;
+	letter-spacing: 1.4px;
+	font-size: 12px;
+}
+
+a:hover {
+	color: $brandColour1;
 }
 
 li:last-child{
