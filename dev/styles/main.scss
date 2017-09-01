@@ -13,6 +13,7 @@
 }
 
 body {
+
 	background-color: red;
 }
 
@@ -34,7 +35,18 @@ body {
 
 header {
 	clear: both;
-	background-color: blue;
+}
+
+#gallery {
+	position: absolute;
+}
+
+.imgHolder {
+	display: inline-block;
+	// width: 20%;
+	img {
+		width: 100%;
+	}
 }
 
 /*            MAIN
@@ -72,5 +84,5 @@ header {
 }
 
 .imageTile__img {
-	
+  
 }
