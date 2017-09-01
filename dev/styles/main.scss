@@ -4,31 +4,48 @@
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
 
+/*            WRAPPER
+=========================================*/
+
 .wrapper {
 	width: 1080px;
-	max-width: 90%;
 }
 
 body {
-	background-color: black;
-	color: white;
+	background-color: white;
 }
 
-#info {
-	float: left;
-	color: white;
-}
+/*            HEADER
+=========================================*/
 
 .logo img {
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	float: left;
+	border: 1px solid white;
 }
 
 .logo h1 {
 	float: left;
+	vertical-align: center;
+	border: 1px solid white;
+	font-family: 'Rubik', sans-serif;
 }
 
 header {
 	clear: both;
+	background-color: blue;
+}
+
+/*            MAIN
+=========================================*/
+
+#info {
+	float: left;
+	color: white;
+	font-family: 'Roboto Mono', monospace;
+}
+
+#gallery {
+	background-color: green;
 }
