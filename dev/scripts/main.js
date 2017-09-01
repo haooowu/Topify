@@ -8,7 +8,7 @@ spotifyApp.albumInfo = {};
 let headers;
 //init
 spotifyApp.tokenRequest = function(){
-	$.ajax({//poxy
+	$.ajax({//proxy
 		url: 'http://proxy.hackeryou.com',
 		method: 'POST',
 		headers: {
@@ -125,7 +125,7 @@ spotifyApp.transformMills = function(millis) {
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-//TODO: helper function, conact string name, spereate by comma,clickable with each artists page
+//TODO: helper function, contact string name, separate by comma,click-able with each artists page
 spotifyApp.pushArtists = function(list){
 	//
 }
