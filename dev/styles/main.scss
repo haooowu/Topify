@@ -34,17 +34,11 @@ a {
 // /*            HEADER
 // =========================================*/
 
-.wrapper {
-	// border: 1px solid #fff;
-}
-
 img.logo {
 	float: left;
-	// width: 10%;
 	height: 50px;
 	display: inline-block;
-	// background: #fff;
-	margin: 0;
+	margin: 0 0 0 75px;
 }
 
 header {
@@ -56,7 +50,6 @@ header {
 	display: inline-block;
 	width: 30%;
 	margin: 0;
-	// border: 1px solid #fff;
 }
 
 .header--left h1 {
@@ -67,16 +60,12 @@ header {
 	font-size: 22px;
 	letter-spacing: 1.6px;
 	text-transform: uppercase;
-	// font-weight: 900;
-	// border: 1px solid #fff;
 }
 
 .header--right.clearfix {
-	// width: 49%;
-	// clear: both;
+	float: right;
 	display: inline-block;
-	// border: 1px solid #fff;
-	// margin-left: 90px;
+	margin-right: 75px;
 }
 
 .header--right ul li {
@@ -109,7 +98,6 @@ li:last-child{
 
 .imgHolder {
 	display: inline-block;
-	// width: 20%;
 	img {
 		width: 100%;
 	}
@@ -155,17 +143,8 @@ li:last-child{
 	padding-top: 100px;
 }
 
-.imgHolder {
-	transition: all 0.4s;
-}
-
 .imageTile:hover::before {
-	content: "";
-	width: 100px;
-	height: 100px;
-	border: 10px solid $brandColour2;
-	color: $brandColour2;
-	border-radius: 100%;
+	content: url('/public/images/i_circle.svg');
 	z-index: 10;
 	position: absolute;
 	top: 50%;
@@ -174,14 +153,18 @@ li:last-child{
 }
 
 .imageTile:hover::after {
-	content: "i";
+	content: "";
+	background: rgba(0, 0, 0, .6);
 	display: block;
-	font-size: 70px;
-	z-index: 20;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%)
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.imgHolder {
+	transition: all 0.4s;
 }
 
 .imgHolder:hover {
