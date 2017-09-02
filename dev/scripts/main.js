@@ -4,6 +4,7 @@ const canadaViral = "37i9dQZEVXbKfIuOAZrk7G";
 const globalTop = "37i9dQZEVXbMDoHDwVN2tF";
 const globalViral = "37i9dQZEVXbLiRSasKsNU9";
 //TODO: dynamically change option
+//TODO: ALBUM/#
 spotifyApp.albumInfo = {};
 let headers;
 //init
@@ -39,13 +40,14 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 	});
 	$.when(spotifyApp.topFifty).then(function(data){
 		let totalTrack = data.tracks.items;
-		let albumId,imageSrc;
+		let albumId,imageSrc,imageSrcSplash;
 		for (let i = 0; i < totalTrack.length; i++){
 			let trackInfo = {};
 			let artistsInfo = {};
 			//populate DOM gallery
 			albumId = totalTrack[i].track.album.id;
 			imageSrc = totalTrack[i].track.album.images[1].url;
+			imageSrcSplash = totalTrack[i].track.album.images[0].url;
 			let cardImage = `<div class="imageTile"><img class="imageTile__img" src=${imageSrc}></div>`
 			let cardWrapper = $('<div class="imgHolder">').attr('id', `${albumId}`).append(cardImage);
 			$("#gallery").append(cardWrapper);
@@ -57,6 +59,7 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 				artistsInfo[totalTrack[i].track.artists[k].name] = totalTrack[i].track.artists[k].id
 			}
 			trackInfo.artists = artistsInfo;
+			trackInfo.imageSrcSplash = imageSrcSplash;
 			trackInfo.popularity = totalTrack[i].track.popularity;
 			trackInfo.redirectLink = totalTrack[i].track.external_urls.spotify;
 			trackInfo.albumType = totalTrack[i].track.album.album_type;
@@ -75,12 +78,15 @@ spotifyApp.galleryListener = function(){
 	$(".imgHolder").click(function(e){
 		let contentId = $(this).attr("id");//targeting DOM ID
 		selectedAlbum = spotifyApp.albumInfo[contentId];
-
+		$("#splash").empty();//get hero img
+		$("#splash").append(`<img src = ${selectedAlbum.imageSrcSplash}>`)
 		console.log((spotifyApp.albumInfo[contentId]))
 		//ajax for get album info
 		spotifyApp.getAlbumtById(contentId);
-		$("#info").empty()
-		$("#info").append(`<div class"artist"><h2>${Object.keys(selectedAlbum.artists)[0]}</h2></div>`)
+		$("#info").empty();
+		for (let i = Object.keys(selectedAlbum.artists).length - 1; i>=0; i--){
+			$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[i]}</h2>`)
+		}
 		//add second/third/fourth... artist 
 		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
 		$("#info").append(`<div class="track__name"><h4>Track: ${selectedAlbum.trackName}</div></h4>`)
@@ -94,9 +100,6 @@ spotifyApp.galleryListener = function(){
 				<span>${selectedAlbum.albumType}</span>
 				<span>${selectedAlbum.explicit}</span>
 			</div>`)
-		// $("#info").append(`<span>${selectedAlbum.popularity}</span>`)
-		// $("#info").append(`<span>${selectedAlbum.albumType}</span>`)
-		// $("#info").append(`<span>${selectedAlbum.explicit}</span>`)
 		$("#info").append(`<a href ="${selectedAlbum.redirectLink}"></a>`)
 	});
 }
@@ -117,7 +120,6 @@ spotifyApp.getAlbumtById = function(album){
 			console.log(index+1 + ". " + element.name);
 		});
 		$("#info").append(`<span>${data.tracks.items.length}</span>`)
-		$("#info").append(`<span>${data.popularity}</span>`)
 		$("#info").append(`<p>Released: ${data.release_date}</p>`)
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
 		//TODO: populate the info correspondingly
