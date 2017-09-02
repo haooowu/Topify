@@ -178,11 +178,16 @@ li:last-child{
 
 #info h2 {
 	color: white;
-	font-size: 70px;
+	font-size: 30px;
 	margin: 50px 0;
 	font-family: $headingFont;
 	text-transform: uppercase;
 	letter-spacing: 3px;
+	width: 600px;
+	display:inline-block;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;
 }
 
 .artist h4 {
@@ -203,7 +208,6 @@ li:last-child{
 	color: #fff;
 	float: left;
 	margin-right: 20px;
-	vertical-align: center;
 }
 
 .button__set-1, .button__set-2 {

@@ -84,8 +84,9 @@ spotifyApp.galleryListener = function(){
 		//ajax for get album info
 		spotifyApp.getAlbumtById(contentId);
 		$("#info").empty();
+		$("#info").append(`<h2 id="artist__name"></h2>`);
 		for (let i = Object.keys(selectedAlbum.artists).length - 1; i>=0; i--){
-			$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[i]}</h2>`)
+			$("#artist__name").text(`${Object.keys(selectedAlbum.artists)}`)
 		}
 		//add second/third/fourth... artist 
 		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
