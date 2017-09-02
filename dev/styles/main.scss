@@ -44,7 +44,7 @@ img.logo {
 	height: 50px;
 	display: inline-block;
 	// background: #fff;
-	margin: 0;
+	margin: 0 0 0 75px;
 }
 
 header {
@@ -72,11 +72,12 @@ header {
 }
 
 .header--right.clearfix {
+	float: right;
 	// width: 49%;
 	// clear: both;
 	display: inline-block;
 	// border: 1px solid #fff;
-	// margin-left: 90px;
+	margin-right: 75px;
 }
 
 .header--right ul li {
@@ -174,7 +175,7 @@ li:last-child{
 }
 
 .imageTile:hover::after {
-	content: "i";
+	content: "";
 	display: block;
 	font-size: 70px;
 	z-index: 20;
