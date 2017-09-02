@@ -161,12 +161,12 @@ li:last-child{
 }
 
 .imageTile:hover::before {
-	content: "";
+	content: url('dev/images/i_circle.svg');
 	width: 100px;
 	height: 100px;
-	border: 10px solid $brandColour2;
-	color: $brandColour2;
-	border-radius: 100%;
+	// border: 10px solid $brandColour2;
+	// color: $brandColour2;
+	// border-radius: 100%;
 	z-index: 10;
 	position: absolute;
 	top: 50%;
@@ -174,16 +174,16 @@ li:last-child{
 	transform: translateX(-50%)
 }
 
-.imageTile:hover::after {
-	content: "";
-	display: block;
-	font-size: 70px;
-	z-index: 20;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%)
-}
+// .imageTile:hover::after {
+// 	content: "";
+// 	display: block;
+// 	font-size: 70px;
+// 	z-index: 20;
+// 	position: absolute;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%)
+// }
 
 .imgHolder:hover {
 	transform: scale(1.3);
