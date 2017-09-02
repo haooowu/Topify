@@ -159,6 +159,31 @@ li:last-child{
 	transition: all 0.4s;
 }
 
+.imageTile:hover::before {
+	content: "";
+	width: 100px;
+	height: 100px;
+	border: 10px solid $brandColour2;
+	color: $brandColour2;
+	border-radius: 100%;
+	z-index: 10;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%)
+}
+
+.imageTile:hover::after {
+	content: "i";
+	display: block;
+	font-size: 70px;
+	z-index: 20;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
 .imgHolder:hover {
 	transform: scale(1.3);
 	margin-left: 4%;
