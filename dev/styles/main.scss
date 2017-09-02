@@ -195,29 +195,45 @@ li:last-child{
 
 #info h2 {
 	color: white;
-	font-size: 50px;
+	font-size: 80px;
 	margin: 0;
 	font-family: 'Roboto Mono', monospace;
 }
 
-#info h4 {
+.artist h4 {
 	float: left;
 	font-size: 20px;
 	margin: 0;
 	margin-right: 15px;
 }
 
-.track2 {
-	color: darkgrey;
+.album__name h4 {
+	color: #696969;
+	float: left;
+	margin-right: 20px;
+	vertical-align: center;
 }
 
-span {
+.track__name h4 {
+	color: #fff;
+	float: left;
+	margin-right: 20px;
+	vertical-align: center;
+}
+
+.button__set-1, .button__set-2 {
+	float: left;
+	span {
+	clear: both;
 	font-size: 20px;
 	color: #1be68d;
 	padding-left: 40px;
 	padding-right: 40px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	border: 1px solid #1be68d;
+	border: 1.5px solid #1be68d;
 	border-radius: 20px;
+	margin: 10px;
+	text-transform: uppercase;
+	}
 }
