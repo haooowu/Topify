@@ -80,14 +80,23 @@ spotifyApp.galleryListener = function(){
 		//ajax for get album info
 		spotifyApp.getAlbumtById(contentId);
 		$("#info").empty()
-		$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[0]}</h2>`)
+		$("#info").append(`<div class"artist"><h2>${Object.keys(selectedAlbum.artists)[0]}</h2></div>`)
 		//add second/third/fourth... artist 
-		$("#info").append(`<h4>${selectedAlbum.albumName}</h4>`)
-		$("#info").append(`<h4 class="track2">${selectedAlbum.trackName}</h4>`)
-		$("#info").append(`<span>${selectedAlbum.duration}</span>`)
-		$("#info").append(`<p>${selectedAlbum.popularity}</p>`)
-		$("#info").append(`<p>${selectedAlbum.albumType}</p>`)
-		$("#info").append(`<p>${selectedAlbum.explicit}</p>`)
+		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
+		$("#info").append(`<div class="track__name"><h4>Track: ${selectedAlbum.trackName}</div></h4>`)
+		$("#info").append(`
+			<div class="button__set-1">
+				<span>${selectedAlbum.duration}</span>
+				<span>${selectedAlbum.popularity}</span>
+			</div>`)
+		$("#info").append(`
+			<div class="button__set-2">
+				<span>${selectedAlbum.albumType}</span>
+				<span>${selectedAlbum.explicit}</span>
+			</div>`)
+		// $("#info").append(`<span>${selectedAlbum.popularity}</span>`)
+		// $("#info").append(`<span>${selectedAlbum.albumType}</span>`)
+		// $("#info").append(`<span>${selectedAlbum.explicit}</span>`)
 		$("#info").append(`<a href ="${selectedAlbum.redirectLink}"></a>`)
 	});
 }
@@ -107,10 +116,10 @@ spotifyApp.getAlbumtById = function(album){
 		data.tracks.items.forEach(function(element, index) {
 			console.log(index+1 + ". " + element.name);
 		});
-		$("#info").append(`<p>${data.popularity}</p>`)
-		$("#info").append(`<p>${data.release_date}</p>`)
-		$("#info").append(`<p>${data.label}</p>`)
-		$("#info").append(`<p>${data.tracks.items.length}</p>`)
+		$("#info").append(`<span>${data.tracks.items.length}</span>`)
+		$("#info").append(`<span>${data.popularity}</span>`)
+		$("#info").append(`<p>Released: ${data.release_date}</p>`)
+		$("#info").append(`<p>Record Label: ${data.label}</p>`)
 		//TODO: populate the info correspondingly
 	});
 }
