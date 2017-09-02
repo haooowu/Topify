@@ -95,11 +95,24 @@ spotifyApp.galleryListener = function(){
 				<span>${selectedAlbum.duration}</span>
 				<span>${selectedAlbum.popularity}</span>
 			</div>`)
-		$("#info").append(`
-			<div class="button__set-2">
-				<span>${selectedAlbum.albumType}</span>
-				<span>${selectedAlbum.explicit}</span>
-			</div>`)
+    
+		if (selectedAlbum.explicit === true) {
+			$("#info").append(`
+				<div class="button__set-2">
+					<span>${selectedAlbum.albumType}</span>
+					<span id="censorship">explicit</span>
+				</div>`)
+		} else { 
+			$("#info").append(`
+				<div class="button__set-2">
+					<span>${selectedAlbum.albumType}</span>
+				</div>`)
+
+		}
+		// $("#info").append(`<span>${selectedAlbum.popularity}</span>`)
+		// $("#info").append(`<span>${selectedAlbum.albumType}</span>`)
+		// $("#info").append(`<span>${selectedAlbum.explicit}</span>`)
+    
 		$("#info").append(`<a href ="${selectedAlbum.redirectLink}"></a>`)
 	});
 }
