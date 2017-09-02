@@ -83,8 +83,8 @@ spotifyApp.galleryListener = function(){
 		$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[0]}</h2>`)
 		//add second/third/fourth... artist 
 		$("#info").append(`<h4>${selectedAlbum.albumName}</h4>`)
-		$("#info").append(`<h4>${selectedAlbum.trackName}</h4>`)
-		$("#info").append(`<p>${selectedAlbum.duration}</p>`)
+		$("#info").append(`<h4 class="track2">${selectedAlbum.trackName}</h4>`)
+		$("#info").append(`<span>${selectedAlbum.duration}</span>`)
 		$("#info").append(`<p>${selectedAlbum.popularity}</p>`)
 		$("#info").append(`<p>${selectedAlbum.albumType}</p>`)
 		$("#info").append(`<p>${selectedAlbum.explicit}</p>`)
