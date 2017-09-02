@@ -39,13 +39,14 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 	});
 	$.when(spotifyApp.topFifty).then(function(data){
 		let totalTrack = data.tracks.items;
-		let albumId,imageSrc;
+		let albumId,imageSrc,imageSrcSplash;
 		for (let i = 0; i < totalTrack.length; i++){
 			let trackInfo = {};
 			let artistsInfo = {};
 			//populate DOM gallery
 			albumId = totalTrack[i].track.album.id;
 			imageSrc = totalTrack[i].track.album.images[1].url;
+			imageSrcSplash = totalTrack[i].track.album.images[0].url;
 			let cardImage = `<div class="imageTile"><img class="imageTile__img" src=${imageSrc}></div>`
 			let cardWrapper = $('<div class="imgHolder">').attr('id', `${albumId}`).append(cardImage);
 			$("#gallery").append(cardWrapper);
@@ -57,6 +58,7 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 				artistsInfo[totalTrack[i].track.artists[k].name] = totalTrack[i].track.artists[k].id
 			}
 			trackInfo.artists = artistsInfo;
+			trackInfo.imageSrcSplash = imageSrcSplash;
 			trackInfo.popularity = totalTrack[i].track.popularity;
 			trackInfo.redirectLink = totalTrack[i].track.external_urls.spotify;
 			trackInfo.albumType = totalTrack[i].track.album.album_type;
@@ -75,12 +77,15 @@ spotifyApp.galleryListener =function(){
 	$(".imgHolder").click(function(e){
 		let contentId = $(this).attr("id");//targeting DOM ID
 		selectedAlbum = spotifyApp.albumInfo[contentId];
-
+		$("#splash").empty();//get hero img
+		$("#splash").append(`<img src = ${selectedAlbum.imageSrcSplash}>`)
 		console.log((spotifyApp.albumInfo[contentId]))
 		//ajax for get album info
 		spotifyApp.getAlbumtById(contentId);
 		$("#info").empty()
-		$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[0]}</h2>`)
+		for (let i = Object.keys(selectedAlbum.artists).length - 1; i>=0; i--){
+			$("#info").append(`<h2>${Object.keys(selectedAlbum.artists)[i]}</h2>`)
+		}
 		//add second/third/fourth... artist 
 		$("#info").append(`<h4>${selectedAlbum.albumName}</h4>`)
 		$("#info").append(`<h4 class="track2">${selectedAlbum.trackName}</h4>`)
