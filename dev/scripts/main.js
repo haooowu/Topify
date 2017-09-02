@@ -73,7 +73,7 @@ spotifyApp.chartsPlaylist = function(){// geting toplist by category
 };
 
 //onlick listener for album
-spotifyApp.galleryListener =function(){
+spotifyApp.galleryListener = function(){
 	let selectedAlbum;
 	$(".imgHolder").click(function(e){
 		let contentId = $(this).attr("id");//targeting DOM ID
