@@ -124,8 +124,6 @@ spotifyApp.getAlbumtById = function(album){
 		data.tracks.items.forEach(function(element, index) {
 			console.log(index+1 + ". " + element.name);
 		});
-		$("#info").append(`<span>${data.tracks.items.length}</span>`)
-		$("#info").append(`<span>${data.popularity}</span>`)
 		$("#info").append(`<p>Released: ${data.release_date}</p>`)
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
 		//TODO: populate the info correspondingly

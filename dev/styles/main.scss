@@ -81,7 +81,7 @@ a {
 	color: $brandColour2;
 	font-family: $bodyFont;
 	letter-spacing: 1.4px;
-	font-size: 12px;
+	font-size: 16px;
 }
 
 a:hover {
@@ -111,6 +111,9 @@ li:last-child{
 	color: white;
 	font-family: 'Roboto Mono', monospace;
 	height: 400px;
+	p {
+		display: block;
+	}
 }
 
 #gallery {
@@ -206,11 +209,17 @@ li:last-child{
 	vertical-align: center;
 }
 
+span {
+	display: inline-block;
+	margin: 40px 0;
+}
+
 .button__set-1, .button__set-2 {
 	float: left;
 	span {
 	clear: both;
 	font-size: 20px;
+	letter-spacing: 1.4px;
 	color: #1be68d;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -220,5 +229,6 @@ li:last-child{
 	border-radius: 20px;
 	margin: 10px;
 	text-transform: uppercase;
+
 	}
 }
