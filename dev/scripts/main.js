@@ -4,6 +4,7 @@ const canadaViral = "37i9dQZEVXbKfIuOAZrk7G";
 const globalTop = "37i9dQZEVXbMDoHDwVN2tF";
 const globalViral = "37i9dQZEVXbLiRSasKsNU9";
 //TODO: dynamically change option
+//TODO: ALBUM/#
 spotifyApp.albumInfo = {};
 let headers;
 //init
