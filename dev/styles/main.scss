@@ -211,13 +211,15 @@ div.main__holder{
 
 #gallery {
 	overflow-x: auto;
-	overflow-y: auto;
 	background-color: #000;
 	margin: auto;
 	position: absolute;
 	.imgHolder {
 		display: inline-block;
 		transition: all 0.4s;
+		img {
+			width: 100%;
+		}
 		&:hover{
 		}
 	}
