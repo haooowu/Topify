@@ -60,156 +60,45 @@ a {
 // /*            HEADER
 // =========================================*/
 
-span {
-      z-index: 9999;
-      position: absolute;
-      top: 20px;
-      left: 10px;
-      width: 35px;
-      height: 4px;
-      background: #ffffff;
-      cursor: pointer;
+header {
+	padding: 0 1%;
+	background: #000;
+	height: 106px;
+}
 
-      &:before, &:after {
-        display: block;
-        position: absolute;
-        content: '';
-        left: 0;
-        height: 4px;
-        width: 35px;
-        background: #ffffff;
-      }
+.header--left.clearfix {
+	display: inline-block;
+	img.logo {
+		float: left;
+		height: 50px;
+		display: inline-block;
+	}
+	h1{
+		float: left;
+		margin: 15px 0 0 5px;
+		color: #fff;
+		font-family: $headingFont;
+		font-size: 22px;
+		letter-spacing: 1.6px;
+		text-transform: uppercase;
+	}
+}
 
-      &:before {
-        top: -8px;
-      }
-
-      &:after {
-        bottom: -8px;
-      }
-    }
-
-    .title {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 100px;
-      margin-top: -50px;
-      width: 50%;
-      margin-left: -25%;
-      text-align: center;
-      
-      h1 {
-        color: #30C4C9;
-      }
-    }
-
-    .overlay {
-      position: absolute;
-      bottom: -99%;
-      height: 100%;
-      background: #30C4C9;
-      left: 0;
-      width: 100%;
-      transition: all 0.5s ease;
-
-      &.anim {
-        left: 0;
-        bottom: 0;
-        animation: menu-anim 1.5s 1 ease-out normal;
-        width: 25%;
-        transition: all 0.5s ease;
-
-        &.reverse-anim {
-          left: 0;
-          bottom: 0;
-          animation: menu-anim 1.5s 1 ease-out reverse;
-          width: 25%;
-          transition: all 0.5s ease;
-        }
-      }
-
-      ul {
-        width: 100%;
-        text-align: center;
-        margin-top: 100px;
-        padding-left: 0;
-        margin-left: -10px;
-        font-size: 2em;
-        font-weight: 800;
-
-        li {
-          margin: 10px 0;
-
-          a {
-            text-decoration: none;
-            color: white;
-            position: relative;
-            display: inline-block;
-            padding: 10px 0;
-            overflow: hidden;
-
-            &:after {
-              display: block;
-              border-radius: 2px;
-              content: ''; 
-              left: 0;
-              bottom: -10px;
-              height: 5px;
-              background: #ffffff;
-              transform: translateX(-101%);
-            }
-
-            &:hover {
-              text-decoration: none;
-
-              &:after {
-                animation: border-anim 0.5s 1 ease normal;
-                transform: translateX(0);
-              }
-            }
-          }
-
-          @-webkit-keyframes border-anim {
-            0% {
-              transform: translateX(-100%);
-            }
-
-            100% {
-              transform: translateX(0);
-            }
-          }
-
-        }
-      }
-    }
-
-    @-webkit-keyframes menu-anim {
-
-      0% {
-        left: 0;
-        bottom: -99%;
-        width: 100%;
-      }
-
-      33% {
-        left: -99.5%;
-        bottom: -99%;
-        width: 100%;
-      }
-
-      66% {
-        left: -99.5%;
-        bottom: 0;
-        width: 100%;
-      }
-
-      100% {
-        bottom: 0;
-        left: 0;
-        width: 25%;
-      }
-    }
+.header--right.clearfix {
+	float: right;
+	display: inline-block;
+	ul li{
+		float: left;
+		padding-bottom: 15px;
+		a{
+			letter-spacing: 1px;
+			font-size: 14px;
+		}
+	}
+	span{
+		padding: 0 15px;
+	}
+}
 
 // /*            MAIN
 // =========================================*/
