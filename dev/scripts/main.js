@@ -179,7 +179,12 @@ spotifyApp.emptyPage = function(){
 
 $(function(){
 	spotifyApp.init();
-	$( "#gallery" ).draggable({
-		axis: "x"
-	});
+	// $( "#gallery" ).draggable({
+	// 	axis: "x",
+	// });
+	// $( "#gallery" ).on( "drag", function( event, ui ) {
+	// 	if (ui.offset.left > 10) {
+	// 		ui.position.left = 10;
+	// 	}
+	// });
 });
