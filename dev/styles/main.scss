@@ -1,15 +1,12 @@
 @import 'setup';
 @import 'mixins';
 @import 'variables';
-
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
-
 // /*            WRAPPER/HELLO
 // =========================================*/
-
 .wrapper {
-	width: 1080px;
+	max-width: 1080px;
 	margin: 0 auto;
 }
 body {
@@ -21,44 +18,9 @@ h1 {margin: 0;}
 
 ::-webkit-scrollbar {display:none;}
 
-ul {padding: 0;list-style-type: none;}
-
-// /*            HEADER
-// =========================================*/
-
-header {
-	padding: 20px;
-	background: #000;
-}
-
-.header--left.clearfix {
-	display: inline-block;
-	margin: 0;
-	img.logo {
-		float: left;
-		height: 50px;
-		display: inline-block;
-		margin: 0 0 0 15px;
-	}
-	h1{
-		float: left;
-		padding: 15px 0 0 20px;
-		color: #fff;
-		font-family: $headingFont;
-		font-size: 22px;
-		letter-spacing: 1.6px;
-		text-transform: uppercase;
-	}
-}
-
-.header--right.clearfix {
-	float: right;
-	display: inline-block;
-	margin-right: 15px;
-	ul li{
-		float: left;
-		padding-bottom: 15px;
-	}
+ul {
+	padding: 0;
+	list-style-type: none;
 }
 
 a {
@@ -72,40 +34,150 @@ a {
 	}
 }
 
-#gallery {
-	overflow-x: auto;
-	background-color: #000;
-	height: 475px;
-	margin: auto;
-	position: absolute;
-	.imgHolder {
+#splashText{
+	font-family: 'Rubik', sans-serif;
+	text-align: center;
+	font-size: 60px;
+	display: none;
+}
+
+// /*            HEADER
+// =========================================*/
+
+header {
+	padding: 0 1%;
+	background: #000;
+	height: 106px;
+}
+
+.header--left.clearfix {
+	display: inline-block;
+	img.logo {
+		float: left;
+		height: 50px;
 		display: inline-block;
-		img {
-			width: 100%;
+	}
+	h1{
+		float: left;
+		margin: 15px 0 0 5px;
+		color: #fff;
+		font-family: $headingFont;
+		font-size: 22px;
+		letter-spacing: 1.6px;
+		text-transform: uppercase;
+	}
+}
+
+.header--right.clearfix {
+	float: right;
+	display: inline-block;
+	ul li{
+		float: left;
+		padding-bottom: 15px;
+		a{
+			letter-spacing: 1px;
+			font-size: 14px;
 		}
+	}
+	span{
+		padding: 0 15px;
 	}
 }
 
 // /*            MAIN
 // =========================================*/
 
+div.main__holder{
+	background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(81,55,82, 0.8));
+	background-size: cover;
+	position: relative;
+	margin: 0 1%;
+}
+
+#splash {
+	display: inline-block;
+	position: relative;
+	color: white;
+	height: 500px;
+	width: 500px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	img {
+		height: 100%;
+		width: 100%;
+		opacity: 0.3;
+	}
+}
+
+// /*            INFO SECTION
+// =========================================*/
+
 #info {
 	display: inline-block;
 	color: white;
 	font-family: 'Roboto Mono', monospace;
-	height: 400px;
-	p {
-		display: block;
+	height: 500px;
+	h2 {
+		color: white;
+		font-size: 30px;
+		margin-top: 50px;
+		font-family: $headingFont;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		max-width: 600px;
+		display:inline-block;
+		white-space: nowrap;
+		overflow:hidden !important;
+		text-overflow: ellipsis;
+	}
+	h3{
+		max-width: 600px;//change when responsive
+		display:inline-block;
+		white-space: nowrap;
+		overflow:hidden !important;
+		text-overflow: ellipsis;
+	}
+	p{
+		font-size: 13px;
 	}
 }
 
+.artist h4 {
+	font-size: 20px;
+	margin: 0;
+	margin-right: 15px;
+}
+
+.album__name h4 {
+	margin-right: 20px;
+	vertical-align: center;
+}
+
+.button__set{
+	height: 40px;
+	position: relative;
+	span {
+		margin-right: 10px;
+		font-size: 14px;
+		letter-spacing: 1.4px;
+		color: darken($brandColour2,15%);
+		border: 1.5px solid darken($brandColour2,30%);
+		padding: 5px 20px;
+		border-radius: 20px;
+		text-transform: uppercase;
+	}
+}
+
+
+// /*        BOTTOM FULL BLEED
+// =========================================*/
 .row {
 	width: 100%;
 	position: absolute;
 	.row__inner {
 		font-size: 0;
 		white-space: nowrap;
-		padding-bottom: 10px;
 	}
 }
 
@@ -137,75 +209,16 @@ a {
 	}
 }
 
-.imgHolder {
-	transition: all 0.4s;
-	&:hover{
-		transform: scale(1.3);
-		margin-left: 4%;
-		margin-right: 4%;
-	}
-}
-
-// /*            INFO SECTION
-// =========================================*/
-
-#info h2 {
-	color: white;
-	font-size: 30px;
-	margin: 50px 0;
-	font-family: $headingFont;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	width: 600px;
-	display:inline-block;
-	white-space: nowrap;
-	overflow:hidden !important;
-	text-overflow: ellipsis;
-}
-
-.artist h4 {
-	float: left;
-	font-size: 20px;
-	margin: 0;
-	margin-right: 15px;
-}
-
-.album__name h4 {
-	color: #696969;
-	float: left;
-	margin-right: 20px;
-	vertical-align: center;
-}
-
-.track__name h4 {
-	color: #fff;
-	float: left;
-	margin-right: 20px;
-}
-
-.button__set-1, .button__set-2 {
-	float: left;
-	span {
-		clear: both;
-		font-size: 20px;
-		letter-spacing: 1.4px;
-		color: #1be68d;
-		padding-left: 40px;
-		padding-right: 40px;
-		padding-top: 5px;
-		padding-bottom: 5px;
-		border: 1.5px solid #1be68d;
-		border-radius: 20px;
-		margin: 10px;
-		text-transform: uppercase;
-	}
-}
-
-#splash img {
+#gallery {
+	overflow-x: auto;
+	overflow-y: auto;
+	background-color: #000;
+	margin: auto;
 	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 0;
-	margin: 80px;
-	opacity: 0.3;
+	.imgHolder {
+		display: inline-block;
+		transition: all 0.4s;
+		&:hover{
+		}
+	}
 }

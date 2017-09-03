@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Project 5</title>
+	<title>Spotify App</title>
 	<meta name="Hao Wu, Dana Manoli, Leo Calogero" content="HackerYou Api Project">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="dev/images/clientLogo.svg" type="svg" sizes="16x16">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" type="image/png" href="public/images/spotify.png">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Rubik:900" rel="stylesheet">
 	<link rel="stylesheet" href="public/styles/style.css">
 </head>
@@ -18,26 +19,30 @@
 			</div>	
 			<div class="header--right clearfix">
 				<ul>
-					<li><a href="#" id="js-cdnTop">Canada's Top 50</a></li>
-					<li><a href="#" id="js-cdnViral">Canada's Most Viral</a></li>
-					<li><a href="#" id="js-globalTop">Global Top 50</a></li>
-					<li><a href="#" id="js-globalViral">Global Most Viral</a></li>
+					<li><a href="#" id="cdnTop">Canada's Top</a><span>|</span></li>
+					<li><a href="#" id="globalTop">Global Top</a><span>|</span></li>
+					<li><a href="#" id="cdnViral">Canada's Viral</a><span>|</span></li>
+					<li><a href="#" id="globalViral">Global Viral</a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
 	<main>
-		<div class="wrapper">
-			<div id="info" class="clearfix"><!-- this is the populated information --></div>
-			<div id="splash"></div>
+		<h1 id="splashText"></h1>
+		<div class="wrapper clearfix">
+			<div class="main__holder">
+				<div id="info" class="clearfix"><!-- this is the populated information --></div>
+				<div id="splash"></div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="row__inner">
-				<div id="gallery"><!-- this is the populated album gallery --></div>
+				<div id="gallery" class="slidee"><!-- this is the populated album gallery --></div>
 			</div>
 		</div>
 	</main>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="public/scripts/main.js"></script>
 </body>
 </html>
