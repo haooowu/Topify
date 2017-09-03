@@ -120,9 +120,9 @@ spotifyApp.getAlbumtById = function(album, linkUrl){
 		dataType: 'json',
 		headers,
 	}).then((data) => {
-		data.tracks.items.forEach(function(element, index) {
-			console.log(index+1 + ". " + element.name);
-		});
+		// data.tracks.items.forEach(function(element, index) {
+		// 	console.log(index+1 + ". " + element.name);
+		// }); //no space to show...
 		// $("#info").append(`<span>${data.tracks.items.length}</span>`)
 		$("#info").append(`<p>Released: ${data.release_date}</p>`)
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
@@ -130,6 +130,7 @@ spotifyApp.getAlbumtById = function(album, linkUrl){
 	});
 }
 
+//li listener
 spotifyApp.playListListener = function(){
 	$("#cdnTop").click(function(e){
 		e.preventDefault();
@@ -179,12 +180,26 @@ spotifyApp.emptyPage = function(){
 
 $(function(){
 	spotifyApp.init();
-	// $( "#gallery" ).draggable({
-	// 	axis: "x",
-	// });
-	// $( "#gallery" ).on( "drag", function( event, ui ) {
-	// 	if (ui.offset.left > 10) {
-	// 		ui.position.left = 10;
-	// 	}
-	// });
+	/* Credit: remove hover effects on touch screen devices
+	https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
+	*/
+	var touch = 'ontouchstart' in document.documentElement
+            || navigator.maxTouchPoints > 0
+            || navigator.msMaxTouchPoints > 0;
+
+	if (touch) { // remove all :hover stylesheets
+	    try { // prevent exception on browsers not supporting DOM styleSheets properly
+	        for (var si in document.styleSheets) {
+	            var styleSheet = document.styleSheets[si];
+	            if (!styleSheet.rules) continue;
+	            //iterates stylesheets
+	            for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+	                if (!styleSheet.rules[ri].selectorText) continue;
+	                if (styleSheet.rules[ri].selectorText.match(':hover')) {
+	                    styleSheet.deleteRule(ri);
+	                }
+	            }
+	        }
+	    } catch (ex) {}
+	}
 });

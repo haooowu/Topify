@@ -3,7 +3,8 @@
 @import 'variables';
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
-// /*            WRAPPER/HELLO
+
+// /*            GENERAL
 // =========================================*/
 .wrapper {
 	max-width: 1080px;
@@ -99,6 +100,10 @@ header {
 // /*            MAIN
 // =========================================*/
 
+main .wrapper{
+	margin-bottom: 50px;
+}
+
 div.main__holder{
 	background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(81,55,82, 0.8));
 	background-size: cover;
@@ -181,7 +186,6 @@ div.main__holder{
 	}
 }
 
-
 // /*        BOTTOM FULL BLEED
 // =========================================*/
 .row {
@@ -197,15 +201,18 @@ div.main__holder{
 	position: relative;
 	float: left;
 	overflow: hidden;
-	margin-right: 1px;
+	padding: 15px 0;
 	font-size: 20px;
 	cursor: pointer;
-	padding-top: 100px;
 	&:hover::before {
-		content: url('/public/images/i_circle.svg');
+		content: "♪";
+		font-size: 100px;
+		color: $brandColour2;
+
+		//content: url('/public/images/i_circle.svg');
 		z-index: 10;
 		position: absolute;
-		top: 50%;
+		top: 35%;
 		left: 50%;
 		transform: translateX(-50%)
 	}
@@ -233,6 +240,8 @@ div.main__holder{
 			width: 100%;
 		}
 		&:hover{
+			transform: scale(1.1);
+			margin: 0 2%;
 		}
 	}
 }
