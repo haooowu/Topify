@@ -102,8 +102,8 @@ spotifyApp.galleryListener = function(){
 		}
 		$("#info").append(`
 			<div class="button__set">
-				<span><i class="fa fa-clock-o" aria-hidden="true"></i>${selectedAlbum.duration}</span>
-				<span><i class="fa fa-star" aria-hidden="true"></i>${selectedAlbum.popularity}</span>
+				<span><i class="fa fa-clock-o" aria-hidden="true"></i> ${selectedAlbum.duration}</span>
+				<span><i class="fa fa-star" aria-hidden="true"></i> ${selectedAlbum.popularity}</span>
 				<span>${selectedAlbum.albumType}</span>
 			</div>`)
 		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
@@ -126,7 +126,7 @@ spotifyApp.getAlbumtById = function(album, linkUrl){
 		// $("#info").append(`<span>${data.tracks.items.length}</span>`)
 		$("#info").append(`<p>Released: ${data.release_date}</p>`)
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
-		$("#info").append(`<a href ="${linkUrl}">Listen it on Spotify<i class="fa fa-play-circle" aria-hidden="true"></i></a>`)
+		$("#info").append(`<a href ="${linkUrl}">Listen on Spotify <i class="fa fa-play-circle" aria-hidden="true"></i></a>`)
 	});
 }
 
