@@ -85,6 +85,7 @@ spotifyApp.chartsPlaylist = function(playlist){// geting toplist by category
 //onlick listener for album
 spotifyApp.galleryListener = function(){
 	let selectedAlbum;
+	let achors = "";
 	$(".imgHolder").click(function(e){
 		let contentId = $(this).attr("id");//targeting DOM ID
 		selectedAlbum = spotifyApp.albumInfo[contentId];
@@ -102,12 +103,15 @@ spotifyApp.galleryListener = function(){
 		}//clear previous data
 		$("#info").empty();
 		$('#populateList').empty();
-		spotifyApp.trackList="";
+		spotifyApp.trackList=""; // remember to clear the list
 		$("#info").append(`<div class="track__name"><h2>${selectedAlbum.trackName}</h2></div>`)
 		$("#info").append(`<h3 id="artist__name"></h3>`);
-		for (let i = Object.keys(selectedAlbum.artists).length - 1; i>=0; i--){
-			$("#artist__name").text(`${Object.keys(selectedAlbum.artists)}`)
+		for (let i = 0; i < Object.keys(selectedAlbum.artists).length; i++){
+			achors += `<a href="https://open.spotify.com/artist/${Object.values(selectedAlbum.artists)[i]}">
+				${Object.keys(selectedAlbum.artists)[i]}</a>,`
 		}
+		$("#artist__name").html((spotifyApp.removeLastComma(achors)));
+		achors = "";//clear
 		$("#info").append(`
 			<div class="button__set">
 				<span><i class="fa fa-clock-o" aria-hidden="true"></i>${selectedAlbum.duration}</span>
@@ -235,6 +239,11 @@ spotifyApp.popWindow = function(){
 			modal.style.display = "none";
 		}
 	}
+}
+
+spotifyApp.removeLastComma = function(input){
+	let lastIndex = input.lastIndexOf(",");
+	return input.substring(0, lastIndex);
 }
 
 $(function(){

@@ -156,6 +156,14 @@ div.main__holder{
 		white-space: nowrap;
 		overflow:hidden !important;
 		text-overflow: ellipsis;
+		a{
+			color: white;
+			letter-spacing: 1px;
+			font-size: 20px;
+			&:hover{
+				color: $brandColour1;
+			}
+		}
 	}
 	p{	z-index: 99;
 		font-size: 13px;
