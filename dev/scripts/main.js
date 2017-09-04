@@ -240,6 +240,12 @@ spotifyApp.popWindow = function(){
 spotifyApp.overlayNav = function(){
 	$("#hamburger").click(function(){
 		document.getElementById("overlay").style.width = "290px";
+		let overlay = document.getElementById('overlay');
+		window.onclick = function(e) {
+			if (e.target === overlay) {
+				document.getElementById("overlay").style.width = "0";
+			}
+		}
 	});
 	$(".close").click(function(){
 		document.getElementById("overlay").style.width = "0";
