@@ -249,4 +249,10 @@ spotifyApp.removeLastComma = function(input){
 $(function(){
 	spotifyApp.init();
 	spotifyApp.removeHover();
+
+	$("#hamburger").click(function(e){
+		console.log("hey");
+		$("#overlay").css({
+		});
+	});
 });

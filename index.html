@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Spotify App</title>
+	<title>Spoti-Viewer</title>
 	<meta name="Hao Wu, Dana Manoli, Leo Calogero" content="HackerYou Api Project">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,13 +12,14 @@
 </head>
 <body>
 	<header>
-		<div class="wrapper">
-			<div class="header--left clearfix">
+		<div class="wrapper clearfix">
+			<div class="header__left clearfix">
 				<img src="dev/images/clientLogo__white.svg" alt="Client logo that resembles a pair of headphones" class="logo">
-				<h1>Spotify App</h1>
+				<h1>Spoti-Viewer</h1>
 			</div>	
-			<div class="header--right clearfix">
-				<ul>
+			<div class="header__right clearfix">
+				<a href="#nav" id="hamburger"><i class="fa fa-bars fa-2x" aria-hidden="true"></i><a>
+				<ul id="overlay">
 					<li><a href="#" id="cdnTop">Canada's Top</a><span>|</span></li>
 					<li><a href="#" id="globalTop">Global Top</a><span>|</span></li>
 					<li><a href="#" id="cdnViral">Canada's Viral</a><span>|</span></li>
