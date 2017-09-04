@@ -261,7 +261,7 @@ div.main__holder{
 		@include respond_to(small) {
 			padding: 2px 8px;
 			font-size:11px;
-			letter-spacing: 0.4px;
+			letter-spacing: 0;
 		}
 	}
 }
