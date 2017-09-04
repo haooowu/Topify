@@ -114,8 +114,8 @@ spotifyApp.galleryListener = function(){
 		achors = "";//clear
 		$("#info").append(`
 			<div class="button__set">
-				<span><i class="fa fa-clock-o" aria-hidden="true"></i>${selectedAlbum.duration}</span>
-				<span><i class="fa fa-star" aria-hidden="true"></i>${selectedAlbum.popularity}</span>
+				<span><i class="fa fa-clock-o" aria-hidden="true"></i> ${selectedAlbum.duration}</span>
+				<span><i class="fa fa-star" aria-hidden="true"></i> ${selectedAlbum.popularity}</span>
 				<span>${selectedAlbum.albumType}</span>
 			</div>`)
 		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
@@ -144,6 +144,7 @@ spotifyApp.getAlbumtById = function(album, linkUrl, notsingle){
 			$("#info").append(`<div><a id="myBtn" href ="">Track list<i class="fa fa-list" aria-hidden="true"></i></a><div>`)
 			spotifyApp.popWindow();
 		}
+
 	});
 }
 
@@ -248,5 +249,16 @@ spotifyApp.removeLastComma = function(input){
 
 $(function(){
 	spotifyApp.init();
-	spotifyApp.removeHover();
+  spotifyApp.removeHover();
+});
+
+$(document).ready(function () {
+
+        $('hr').click(function() {
+            $('.overlay').toggleClass('anim');
+        });
+
+        $('.animation').click(function(){
+            $('.anim').toggleClass('reverse-animation');
+        })
 });
