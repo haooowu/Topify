@@ -1,3 +1,4 @@
+//TODO: add auto-horizontal scroll to the gallery in the future
 const spotifyApp = {};
 const canadaTop = "37i9dQZEVXbKj23U1GF4IR";
 const canadaViral = "37i9dQZEVXbKfIuOAZrk7G";
