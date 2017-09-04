@@ -86,7 +86,7 @@ spotifyApp.chartsPlaylist = function(playlist){// geting toplist by category
 //onlick listener for album
 spotifyApp.galleryListener = function(){
 	let selectedAlbum;
-	let achors = "";
+	let anchors = "";
 	$(".imgHolder").click(function(e){
 		let contentId = $(this).attr("id");//targeting DOM ID
 		selectedAlbum = spotifyApp.albumInfo[contentId];
@@ -108,11 +108,11 @@ spotifyApp.galleryListener = function(){
 		$("#info").append(`<div class="track__name"><h2>${selectedAlbum.trackName}</h2></div>`)
 		$("#info").append(`<h3 id="artist__name"></h3>`);
 		for (let i = 0; i < Object.keys(selectedAlbum.artists).length; i++){
-			achors += `<a href="https://open.spotify.com/artist/${Object.values(selectedAlbum.artists)[i]}">
+			anchors += `<a href="https://open.spotify.com/artist/${Object.values(selectedAlbum.artists)[i]}">
 				${Object.keys(selectedAlbum.artists)[i]}</a>,`
 		}
-		$("#artist__name").html((spotifyApp.removeLastComma(achors)));
-		achors = "";//clear
+		$("#artist__name").html((spotifyApp.removeLastComma(anchors)));
+		anchors = "";//clear
 		$("#info").append(`
 			<div class="button__set">
 				<span><i class="fa fa-clock-o" aria-hidden="true"></i> ${selectedAlbum.duration}</span>
