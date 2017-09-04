@@ -60,7 +60,7 @@ a {
 // /*            NAVIGATION
 // =========================================*/
 
-span {
+hr {
   z-index: 9999;
   position: absolute;
   top: 20px;
@@ -90,10 +90,11 @@ span {
 }
 
 .overlay {
+  z-index: 998;
   position: absolute;
   bottom: -99%;
   height: 100%;
-  background: #513752;
+  background: $brandColour1;
   left: 0;
   width: 100%;
   transition: all 0.5s ease;
@@ -200,27 +201,26 @@ span {
 // =========================================*/
 
 header {
-	padding: 0 1%;
-	background: #000;
-	height: 106px;
+	height: 200px;
 }
 
-.header--left.clearfix {
-	display: inline-block;
-	img.logo {
-		float: left;
-		height: 50px;
-		display: inline-block;
-	}
-	h1{
-		float: left;
-		margin: 15px 0 0 5px;
-		color: #fff;
-		font-family: $headingFont;
-		font-size: 22px;
-		letter-spacing: 1.6px;
-		text-transform: uppercase;
-	}
+header img {
+	position: absolute;
+	left: 48%;
+	width: 120px;
+	height: 120px;
+	opacity: 0.7;
+	z-index: 98;
+}
+
+header h1 {
+	z-index: 99;
+	text-align: center;
+	color: $brandColour2;
+	margin-top: 20px;
+	text-transform: uppercase;
+	font-size: 55px;
+	font-family: 'Rubik', sans-serif;
 }
 
 // /*            MAIN

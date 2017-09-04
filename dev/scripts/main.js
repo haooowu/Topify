@@ -206,7 +206,7 @@ $(function(){
 
 $(document).ready(function () {
 
-        $('span').click(function() {
+        $('hr').click(function() {
             $('.overlay').toggleClass('anim');
         });
 
