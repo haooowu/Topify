@@ -19,20 +19,28 @@
 			</div>	
 			<div class="header__right clearfix">
 				<a href="#nav" id="hamburger"><i class="fa fa-bars fa-2x" aria-hidden="true"></i><a>
-				<ul id="overlay">
-					<li><a href="#" id="cdnTop">Canada's Top</a><span>|</span></li>
-					<li><a href="#" id="globalTop">Global Top</a><span>|</span></li>
-					<li><a href="#" id="cdnViral">Canada's Viral</a><span>|</span></li>
-					<li><a href="#" id="globalViral">Global Viral</a></li>
+				<ul>
+					<li><a href="#" class="cdnTop">Canada's Top</a><span>|</span></li>
+					<li><a href="#" class="globalTop">Global Top</a><span>|</span></li>
+					<li><a href="#" class="cdnViral">Canada's Viral</a><span>|</span></li>
+					<li><a href="#" class="globalViral">Global Viral</a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
+	<nav>
+		<div id="overlay"><span class="close">&times;</span>
+			<a href="#" class="cdnTop">Canada's Top</a>
+			<a href="#" class="globalTop">Global Top</a>
+			<a href="#" class="cdnViral">Canada's Viral</a>
+			<a href="#" class="globalViral">Global Viral</a>
+		</div>
+	</nav>
 	<main>
 		<h1 id="splashText"></h1>
 		<div class="wrapper clearfix">
 			<div class="main__holder">
-				<div id="info" class="clearfix"><!-- this is the populated information --></div>
+				<div id="info" class="clearfix"><!-- populated information --></div>
 				<div id="splash"></div>
 			</div>
 		</div>
@@ -44,7 +52,7 @@
 		</div>
 		<div class="row">
 			<div class="row__inner">
-				<div id="gallery"><!-- this is the populated album gallery --></div>
+				<div id="gallery"><!-- populated album gallery --></div>
 			</div>
 		</div>
 	</main>

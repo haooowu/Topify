@@ -52,6 +52,9 @@ a {
 	text-align: center;
 	font-size: 60px;
 	display: none;
+	@include respond_to(spacing) {
+		font-size: 40px;
+	}
 }
 
 // /*            HEADER
@@ -72,8 +75,18 @@ a {
 		letter-spacing: 1.6px;
 		text-transform: uppercase;
 	}
+	@include respond_to(small) {
+		h1{
+			font-size: 20px;
+			letter-spacing: 0;
+			float: left;
+			position: absolute;
+			left: 50%;
+			color: $brandColour2;
+			transform: translateX(-50%);
+		}
+	}
 }
-
 
 header {
 	padding: 0 1%;
@@ -111,8 +124,6 @@ header {
 	span{
 		padding: 0 10px;
 	}
-// /*            NAV
-// =========================================*/
 	#hamburger{
 		margin-top: 25px;
 		display: none;
@@ -125,7 +136,6 @@ header {
 			display: inline-block;
 		}
 	}
-///
 }
 
 // /*            MAIN
@@ -137,6 +147,7 @@ main .wrapper{
 
 div.main__holder{
 	background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(81,55,82, 0.6));
+	padding: 0 10px;
 	background-size: cover;
 	position: relative;
 }
@@ -179,13 +190,28 @@ div.main__holder{
 		white-space: nowrap;
 		overflow:hidden !important;
 		text-overflow: ellipsis;
+		@include respond_to(spacing) {
+			font-size: 25px;
+			max-width: 450px;
+		}
+		@include respond_to(small) {
+			font-size: 25px;
+			max-width: 300px;
+		}
 	}
-	h3{	z-index: 99;
+	h3{
+		z-index: 99;
 		max-width: 600px;//change when responsive
 		display:inline-block;
 		white-space: nowrap;
 		overflow:hidden !important;
 		text-overflow: ellipsis;
+		@include respond_to(spacing) {
+			max-width: 450px;
+		}
+		@include respond_to(small) {
+			max-width: 300px;
+		}
 		a{
 			color: white;
 			letter-spacing: 1px;
@@ -213,6 +239,10 @@ div.main__holder{
 	vertical-align: center;
 }
 
+#viewtracklist{
+	padding-top: 10px;	
+}
+
 .button__set{
 	z-index: 99;
 	height: 40px;
@@ -227,6 +257,11 @@ div.main__holder{
 		padding: 5px 20px;
 		border-radius: 20px;
 		text-transform: uppercase;
+		@include respond_to(small) {
+			padding: 2px 8px;
+			font-size:11px;
+			letter-spacing: 0.4px;
+		}
 	}
 }
 
@@ -274,6 +309,7 @@ div.main__holder{
 
 #gallery {
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 	background-color: #000;
 	margin: auto;
 	position: absolute;
@@ -328,3 +364,59 @@ div.modal {
 	}
 }
 
+// /*          Overlay NAVIGATION
+// =========================================*/
+
+nav #overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	right: 0;
+	background: linear-gradient(90deg, rgba(81,55,82, 1), rgba(81,55,82, 0.95));
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 80px;
+	a {
+		width: 170px;
+		text-align: center;
+		font-family: 'Roboto Mono', monospace;
+		color: #fff;
+		padding: 10px 0;
+		margin: 10px 0;
+		margin-left: 65px;
+		text-decoration: none;
+		font-size: 20px;
+		letter-spacing: 0;
+		display: block;
+		transition: 0.3s;
+		&:after {
+			content:"";
+			display:block;
+			padding: 10px 0 0 0;
+			border-top:5px solid #fff;
+			width:0;
+			transition:all 0.5s;
+		}
+		&:hover{
+			color:$brandColour2;
+			transition: 0.4s;
+			&:after{
+				width:100%;
+				border-top:5px solid $brandColour2;
+			}
+		}
+	}
+	span {
+		color: #fff;
+		cursor: pointer;
+		font-size: 30px;
+		margin-left: 15px;
+		padding: 0 15px;
+		&:hover{
+			color:$brandColour2;
+			transition: 0.4s;
+		}
+	}
+}
