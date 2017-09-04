@@ -7,6 +7,7 @@ const globalViral = "37i9dQZEVXbLiRSasKsNU9";
 spotifyApp.albumInfo = {};
 let headers;
 let defaultList = canadaTop;
+spotifyApp.trackList ="";
 //init
 spotifyApp.init = function(){
 	spotifyApp.tokenRequest();
@@ -84,22 +85,33 @@ spotifyApp.chartsPlaylist = function(playlist){// geting toplist by category
 //onlick listener for album
 spotifyApp.galleryListener = function(){
 	let selectedAlbum;
+	let achors = "";
 	$(".imgHolder").click(function(e){
-		$("#splashText").css("display","none");
-		$(".main__holder").fadeIn();
 		let contentId = $(this).attr("id");//targeting DOM ID
 		selectedAlbum = spotifyApp.albumInfo[contentId];
+		//clear previous data
+		$("#splashText").css("display","none");
+		$(".main__holder").fadeIn();
 		$("#splash").empty();//get hero img
 		$("#splash").append(`<img src = ${selectedAlbum.imageSrcSplash}>`)
 		console.log((spotifyApp.albumInfo[contentId]))
 		//ajax for get album info
-		spotifyApp.getAlbumtById(contentId,selectedAlbum.redirectLink);
+		if (selectedAlbum.albumType === "album"){
+			spotifyApp.getAlbumtById(contentId,selectedAlbum.redirectLink,true);
+		}else{//if albun, show lsit
+			spotifyApp.getAlbumtById(contentId,selectedAlbum.redirectLink);
+		}//clear previous data
 		$("#info").empty();
+		$('#populateList').empty();
+		spotifyApp.trackList=""; // remember to clear the list
 		$("#info").append(`<div class="track__name"><h2>${selectedAlbum.trackName}</h2></div>`)
 		$("#info").append(`<h3 id="artist__name"></h3>`);
-		for (let i = Object.keys(selectedAlbum.artists).length - 1; i>=0; i--){
-			$("#artist__name").text(`${Object.keys(selectedAlbum.artists)}`)
+		for (let i = 0; i < Object.keys(selectedAlbum.artists).length; i++){
+			achors += `<a href="https://open.spotify.com/artist/${Object.values(selectedAlbum.artists)[i]}">
+				${Object.keys(selectedAlbum.artists)[i]}</a>,`
 		}
+		$("#artist__name").html((spotifyApp.removeLastComma(achors)));
+		achors = "";//clear
 		$("#info").append(`
 			<div class="button__set">
 				<span><i class="fa fa-clock-o" aria-hidden="true"></i> ${selectedAlbum.duration}</span>
@@ -113,20 +125,26 @@ spotifyApp.galleryListener = function(){
 	});
 }
 
-spotifyApp.getAlbumtById = function(album, linkUrl){
+spotifyApp.getAlbumtById = function(album, linkUrl, notsingle){
 	$.ajax({//https://developer.spotify.com/web-api/console/get-track/?id=3n3Ppam7vgaVa1iaRUc9Lp
 		url:`https://api.spotify.com/v1/albums/${album}`, //album_id
 		method: 'GET',
 		dataType: 'json',
 		headers,
 	}).then((data) => {
-		// data.tracks.items.forEach(function(element, index) {
-		// 	console.log(index+1 + ". " + element.name);
-		// }); //no space to show...
+		data.tracks.items.forEach(function(element, index) {
+			index = index+1;
+			spotifyApp.trackList += ("<p>"+ index + ". " + element.name + "</p>");
+		}); 
 		// $("#info").append(`<span>${data.tracks.items.length}</span>`)
 		$("#info").append(`<p>Released: ${data.release_date}</p>`)
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
-		$("#info").append(`<a href ="${linkUrl}">Listen on Spotify <i class="fa fa-play-circle" aria-hidden="true"></i></a>`)
+		$("#info").append(`<a href ="${linkUrl}">Listen it on Spotify<i class="fa fa-play-circle" aria-hidden="true"></i></a>`)
+		if (notsingle){
+			$("#info").append(`<div><a id="myBtn" href ="">Track list<i class="fa fa-list" aria-hidden="true"></i></a><div>`)
+			spotifyApp.popWindow();
+		}
+
 	});
 }
 
@@ -177,31 +195,61 @@ spotifyApp.emptyPage = function(){
 	$("#splashText").css("display","none");
 	$("#splashText").fadeIn();
 }
+/* Credit: remove hover effects on touch screen devices
+https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
+*/
+spotifyApp.removeHover = function(){
+	let touch = 'ontouchstart' in document.documentElement 
+		|| navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+	if (touch) { // remove all :hover stylesheets
+		try { // prevent exception on browsers not supporting DOM styleSheets properly
+			for (let si in document.styleSheets) {
+				let styleSheet = document.styleSheets[si];
+				if (!styleSheet.rules) continue;
+				//iterates stylesheets
+				for (let ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+					if (!styleSheet.rules[ri].selectorText) continue;
+					if (styleSheet.rules[ri].selectorText.match(':hover')) {
+						styleSheet.deleteRule(ri);
+					}
+				}
+			}
+		} catch (ex) {}
+	};
+}
+/*credit: pure css/html/js pop up window
+https://www.w3schools.com/howto/howto_css_modals.asp
+*/
+spotifyApp.popWindow = function(){
+	//document.getElementById('populateList').append addes as string...
+	$('#populateList').append(spotifyApp.trackList);//jquery append as markup
+	// Get the modal and span
+	let modal = document.getElementById('myModal');
+	let btn = document.getElementById("myBtn");
+	let span = document.getElementsByClassName("close")[0];
+	btn.onclick = function(e) {
+		e.preventDefault();
+		modal.style.display = "block";
+	}// When the user clicks on the button, open the modal,ow close 
+	span.onclick = function(e) {
+		e.preventDefault();
+		modal.style.display = "none";
+	} // When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target === modal) {
+			modal.style.display = "none";
+		}
+	}
+}
+
+spotifyApp.removeLastComma = function(input){
+	let lastIndex = input.lastIndexOf(",");
+	return input.substring(0, lastIndex);
+}
 
 $(function(){
 	spotifyApp.init();
-	/* Credit: remove hover effects on touch screen devices
-	https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
-	*/
-	var touch = 'ontouchstart' in document.documentElement
-            || navigator.maxTouchPoints > 0
-            || navigator.msMaxTouchPoints > 0;
-
-	if (touch) { // remove all :hover stylesheets
-	    try { // prevent exception on browsers not supporting DOM styleSheets properly
-	        for (var si in document.styleSheets) {
-	            var styleSheet = document.styleSheets[si];
-	            if (!styleSheet.rules) continue;
-	            //iterates stylesheets
-	            for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-	                if (!styleSheet.rules[ri].selectorText) continue;
-	                if (styleSheet.rules[ri].selectorText.match(':hover')) {
-	                    styleSheet.deleteRule(ri);
-	                }
-	            }
-	        }
-	    } catch (ex) {}
-	}
+  spotifyApp.removeHover();
 });
 
 $(document).ready(function () {
