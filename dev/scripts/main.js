@@ -21,7 +21,7 @@ spotifyApp.init = function(){
 
 spotifyApp.tokenRequest = function(){
 	$.ajax({//proxy
-		url: 'http://proxy.hackeryou.com',
+		url: 'https://proxy.hackeryou.com',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
