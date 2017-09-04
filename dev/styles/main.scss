@@ -252,8 +252,8 @@ div.main__holder{
 		margin-right: 10px;
 		font-size: 14px;
 		letter-spacing: 1.4px;
-		color: darken($brandColour2,15%);
-		border: 1.5px solid darken($brandColour2,30%);
+		color: darken($brandColour2, 10%);
+		border: 1.5px solid darken($brandColour2, 25%);
 		padding: 5px 20px;
 		border-radius: 20px;
 		text-transform: uppercase;
@@ -309,7 +309,7 @@ div.main__holder{
 
 #gallery {
 	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch; //important, allow faster scroll on phone
 	background-color: #000;
 	margin: auto;
 	position: absolute;
@@ -342,9 +342,9 @@ div.modal {
 	.modal__content {/* Modal Content/Box */
 		font-family: 'Roboto Mono', monospace;
 		background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(81,55,82, 0.2));
-		margin: 15% auto; /* 15% from the top and centered */
+		margin: 5% auto; /* 5% from the top and centered */
 		padding: 10px 30px;
-		color: $brandColour2;
+		color: #fff;
 		border: 0.5px solid transparent;
 		border-radius: 15px;
 		max-width: 800px;
@@ -380,7 +380,7 @@ nav #overlay {
 	padding-top: 80px;
 	a {
 		width: 170px;
-		text-align: center;
+		text-align: left;
 		font-family: 'Roboto Mono', monospace;
 		color: #fff;
 		padding: 10px 0;
