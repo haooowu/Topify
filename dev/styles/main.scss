@@ -3,7 +3,6 @@
 @import 'variables';
 // font-family: 'Rubik', sans-serif;
 // font-family: 'Roboto Mono', monospace;
-
 // /*            GENERAL
 // =========================================*/
 .wrapper {
@@ -37,6 +36,7 @@ ul {
 }
 
 a {
+	z-index: 99;
 	text-decoration: none;
 	color: $brandColour2;
 	font-family: $bodyFont;
@@ -52,18 +52,15 @@ a {
 	text-align: center;
 	font-size: 60px;
 	display: none;
+	@include respond_to(spacing) {
+		font-size: 40px;
+	}
 }
 
 // /*            HEADER
 // =========================================*/
 
-header {
-	padding: 0 1%;
-	background: #000;
-	height: 106px;
-}
-
-.header--left.clearfix {
+.header__left.clearfix {
 	display: inline-block;
 	img.logo {
 		float: left;
@@ -73,15 +70,47 @@ header {
 	h1{
 		float: left;
 		margin: 15px 0 0 5px;
-		color: #fff;
 		font-family: $headingFont;
 		font-size: 22px;
 		letter-spacing: 1.6px;
 		text-transform: uppercase;
 	}
+	@include respond_to(small) {
+		h1{
+			font-size: 20px;
+			letter-spacing: 0;
+			float: left;
+			position: absolute;
+			left: 50%;
+			color: $brandColour2;
+			transform: translateX(-50%);
+		}
+	}
 }
 
-.header--right.clearfix {
+header {
+	padding: 0 1%;
+	background: #000;
+	height: 106px;
+	position: relative;
+	@include respond_to(spacing) {
+		img.logo {
+			float: left;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		h1{
+			float: left;
+			position: absolute;
+			left: 50%;
+			color: $brandColour2;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+.header__right.clearfix {
 	float: right;
 	display: inline-block;
 	ul li{
@@ -93,7 +122,19 @@ header {
 		}
 	}
 	span{
-		padding: 0 15px;
+		padding: 0 10px;
+	}
+	#hamburger{
+		margin-top: 25px;
+		display: none;
+	}
+	@include respond_to(spacing) {
+		ul{
+			display: none;
+		}
+		#hamburger{
+			display: inline-block;
+		}
 	}
 }
 
@@ -105,13 +146,14 @@ main .wrapper{
 }
 
 div.main__holder{
-	background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(81,55,82, 0.8));
+	background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(81,55,82, 0.6));
+	padding: 0 10px;
 	background-size: cover;
 	position: relative;
-	margin: 0 1%;
 }
 
 #splash {
+	z-index: -1;
 	display: inline-block;
 	position: relative;
 	color: white;
@@ -123,7 +165,6 @@ div.main__holder{
 	img {
 		height: 100%;
 		width: 100%;
-		opacity: 0.3;
 	}
 }
 
@@ -131,11 +172,13 @@ div.main__holder{
 // =========================================*/
 
 #info {
+	z-index: 99;
 	display: inline-block;
 	color: white;
 	font-family: 'Roboto Mono', monospace;
 	height: 500px;
 	h2 {
+		z-index: 99;
 		color: white;
 		font-size: 30px;
 		margin-top: 50px;
@@ -147,42 +190,78 @@ div.main__holder{
 		white-space: nowrap;
 		overflow:hidden !important;
 		text-overflow: ellipsis;
+		@include respond_to(spacing) {
+			font-size: 25px;
+			max-width: 450px;
+		}
+		@include respond_to(small) {
+			font-size: 25px;
+			max-width: 300px;
+		}
 	}
 	h3{
+		z-index: 99;
 		max-width: 600px;//change when responsive
 		display:inline-block;
 		white-space: nowrap;
 		overflow:hidden !important;
 		text-overflow: ellipsis;
+		@include respond_to(spacing) {
+			max-width: 450px;
+		}
+		@include respond_to(small) {
+			max-width: 300px;
+		}
+		a{
+			color: white;
+			letter-spacing: 1px;
+			font-size: 20px;
+			&:hover{
+				color: $brandColour1;
+			}
+		}
 	}
-	p{
+	p{	z-index: 99;
 		font-size: 13px;
 	}
 }
 
-.artist h4 {
+.artist h4 {	
+	z-index: 99;
 	font-size: 20px;
 	margin: 0;
 	margin-right: 15px;
 }
 
 .album__name h4 {
+	z-index: 99;
 	margin-right: 20px;
 	vertical-align: center;
 }
 
+#viewtracklist{
+	padding-top: 10px;	
+}
+
 .button__set{
+	z-index: 99;
 	height: 40px;
 	position: relative;
 	span {
+		z-index: 99;
 		margin-right: 10px;
 		font-size: 14px;
 		letter-spacing: 1.4px;
-		color: darken($brandColour2,15%);
-		border: 1.5px solid darken($brandColour2,30%);
+		color: darken($brandColour2, 10%);
+		border: 1.5px solid darken($brandColour2, 25%);
 		padding: 5px 20px;
 		border-radius: 20px;
 		text-transform: uppercase;
+		@include respond_to(small) {
+			padding: 2px 8px;
+			font-size:11px;
+			letter-spacing: 0.4px;
+		}
 	}
 }
 
@@ -230,6 +309,7 @@ div.main__holder{
 
 #gallery {
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch; //important, allow faster scroll on phone
 	background-color: #000;
 	margin: auto;
 	position: absolute;
@@ -242,6 +322,101 @@ div.main__holder{
 		&:hover{
 			transform: scale(1.1);
 			margin: 0 2%;
+		}
+	}
+}
+
+// /*       Popup Modal Window
+// =========================================*/
+// credit: https://www.w3schools.com/howto/howto_css_modals.asp
+div.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 999;
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.5); /* Fallback color */
+	.modal__content {/* Modal Content/Box */
+		font-family: 'Roboto Mono', monospace;
+		background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(81,55,82, 0.2));
+		margin: 5% auto; /* 5% from the top and centered */
+		padding: 10px 30px;
+		color: #fff;
+		border: 0.5px solid transparent;
+		border-radius: 15px;
+		max-width: 800px;
+	}
+	/* The Close Button */
+	.close {
+		color: $brandColour2;
+		float: right;
+		padding-top: 5px;
+		font-size: 30px;
+		font-weight: bold;
+		&:hover, &:focus{
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+}
+
+// /*          Overlay NAVIGATION
+// =========================================*/
+
+nav #overlay {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	right: 0;
+	background: linear-gradient(90deg, rgba(81,55,82, 1), rgba(81,55,82, 0.95));
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 80px;
+	a {
+		width: 170px;
+		text-align: left;
+		font-family: 'Roboto Mono', monospace;
+		color: #fff;
+		padding: 10px 0;
+		margin: 10px 0;
+		margin-left: 65px;
+		text-decoration: none;
+		font-size: 20px;
+		letter-spacing: 0;
+		display: block;
+		transition: 0.3s;
+		&:after {
+			content:"";
+			display:block;
+			padding: 10px 0 0 0;
+			border-top:5px solid #fff;
+			width:0;
+			transition:all 0.5s;
+		}
+		&:hover{
+			color:$brandColour2;
+			transition: 0.4s;
+			&:after{
+				width:100%;
+				border-top:5px solid $brandColour2;
+			}
+		}
+	}
+	span {
+		color: #fff;
+		cursor: pointer;
+		font-size: 30px;
+		margin-left: 15px;
+		padding: 0 15px;
+		&:hover{
+			color:$brandColour2;
+			transition: 0.4s;
 		}
 	}
 }
