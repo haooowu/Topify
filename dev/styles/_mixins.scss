@@ -15,9 +15,9 @@
     @media only screen and (min-width: 769px) {
       @content;
     }
-  }
+  }//spacing is own justified width
   @else if $breakpoint == "spacing" {
-    @media only screen and (max-width: 989px) {
+    @media only screen and (max-width: 789px) {
       @content;
     }
   }

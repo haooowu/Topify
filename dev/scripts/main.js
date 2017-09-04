@@ -16,6 +16,7 @@ spotifyApp.init = function(){
 	$("#splashText").css("display","none");
 	$("#splashText").text(`Canada Top 50`)
 	$("#splashText").fadeIn(1000);
+	spotifyApp.overlayNav();
 }
 
 spotifyApp.tokenRequest = function(){
@@ -114,8 +115,8 @@ spotifyApp.galleryListener = function(){
 		achors = "";//clear
 		$("#info").append(`
 			<div class="button__set">
-				<span><i class="fa fa-clock-o" aria-hidden="true"></i> ${selectedAlbum.duration}</span>
-				<span><i class="fa fa-star" aria-hidden="true"></i> ${selectedAlbum.popularity}</span>
+				<span><i class="fa fa-clock-o" aria-hidden="true"></i>${selectedAlbum.duration}</span>
+				<span><i class="fa fa-star" aria-hidden="true"></i>${selectedAlbum.popularity}</span>
 				<span>${selectedAlbum.albumType}</span>
 			</div>`)
 		$("#info").append(`<div class="album__name"><h4>Album: ${selectedAlbum.albumName}</h4></div>`)
@@ -141,37 +142,36 @@ spotifyApp.getAlbumtById = function(album, linkUrl, notsingle){
 		$("#info").append(`<p>Record Label: ${data.label}</p>`)
 		$("#info").append(`<a href ="${linkUrl}">Listen it on Spotify<i class="fa fa-play-circle" aria-hidden="true"></i></a>`)
 		if (notsingle){
-			$("#info").append(`<div><a id="myBtn" href ="">Track list<i class="fa fa-list" aria-hidden="true"></i></a><div>`)
+			$("#info").append(`<div id="viewtracklist"><a id="myBtn" href ="">Track list<i class="fa fa-list" aria-hidden="true"></i></a><div>`)
 			spotifyApp.popWindow();
 		}
-
 	});
 }
 
 //li listener
 spotifyApp.playListListener = function(){
-	$("#cdnTop").click(function(e){
+	$(".cdnTop").click(function(e){
 		e.preventDefault();
 		spotifyApp.emptyPage();
 		defaultList = canadaTop;
 		$("#splashText").text(`Canada Top 50`)
 		spotifyApp.chartsPlaylist(canadaTop);
 	});
-	$("#globalTop").click(function(e){
+	$(".globalTop").click(function(e){
 		e.preventDefault();
 		spotifyApp.emptyPage();
 		defaultList = globalTop;
 		$("#splashText").text(`Global Top 50`)
 		spotifyApp.chartsPlaylist(globalTop);
 	});
-	$("#cdnViral").click(function(e){
+	$(".cdnViral").click(function(e){
 		e.preventDefault();
 		spotifyApp.emptyPage();
 		defaultList = canadaViral;
 		$("#splashText").text(`Canada Viral 50`)
 		spotifyApp.chartsPlaylist(canadaViral);
 	});
-	$("#globalViral").click(function(e){
+	$(".globalViral").click(function(e){
 		e.preventDefault();
 		spotifyApp.emptyPage();
 		defaultList = globalViral;
@@ -199,23 +199,19 @@ spotifyApp.emptyPage = function(){
 https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
 */
 spotifyApp.removeHover = function(){
-	let touch = 'ontouchstart' in document.documentElement 
-		|| navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-	if (touch) { // remove all :hover stylesheets
-		try { // prevent exception on browsers not supporting DOM styleSheets properly
-			for (let si in document.styleSheets) {
-				let styleSheet = document.styleSheets[si];
-				if (!styleSheet.rules) continue;
-				//iterates stylesheets
-				for (let ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-					if (!styleSheet.rules[ri].selectorText) continue;
-					if (styleSheet.rules[ri].selectorText.match(':hover')) {
-						styleSheet.deleteRule(ri);
-					}
+	try { // prevent exception on browsers not supporting DOM styleSheets properly
+		for (let si in document.styleSheets) {
+			let styleSheet = document.styleSheets[si];
+			if (!styleSheet.rules) continue;
+			//iterates stylesheets
+			for (let ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+				if (!styleSheet.rules[ri].selectorText) continue;
+				if (styleSheet.rules[ri].selectorText.match(':hover')) {
+					styleSheet.deleteRule(ri);
 				}
 			}
-		} catch (ex) {}
-	};
+		}
+	} catch (ex) {}
 }
 /*credit: pure css/html/js pop up window
 https://www.w3schools.com/howto/howto_css_modals.asp
@@ -231,15 +227,23 @@ spotifyApp.popWindow = function(){
 		e.preventDefault();
 		modal.style.display = "block";
 	}// When the user clicks on the button, open the modal,ow close 
-	span.onclick = function(e) {
-		e.preventDefault();
+	$(".close").click(function(){
 		modal.style.display = "none";
-	} // When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target === modal) {
+	});
+	window.onclick = function(e) {
+		if (e.target === modal) {
 			modal.style.display = "none";
 		}
 	}
+}
+
+spotifyApp.overlayNav = function(){
+	$("#hamburger").click(function(){
+		document.getElementById("overlay").style.width = "290px";
+	});
+	$(".close").click(function(){
+		document.getElementById("overlay").style.width = "0";
+	});
 }
 
 spotifyApp.removeLastComma = function(input){
@@ -249,16 +253,7 @@ spotifyApp.removeLastComma = function(input){
 
 $(function(){
 	spotifyApp.init();
-  spotifyApp.removeHover();
-});
-
-$(document).ready(function () {
-
-        $('hr').click(function() {
-            $('.overlay').toggleClass('anim');
-        });
-
-        $('.animation').click(function(){
-            $('.anim').toggleClass('reverse-animation');
-        })
+	if ($(window).width() < 789) {
+		spotifyApp.removeHover();
+	}
 });
