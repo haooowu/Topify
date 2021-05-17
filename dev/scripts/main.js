@@ -21,24 +21,18 @@ spotifyApp.init = function(){
 }
 
 spotifyApp.tokenRequest = function(){
-	$.ajax({//proxy
-		url: 'https://proxy.hackeryou.com',
+	$.ajax({
+		url: 'https://accounts.spotify.com/api/token',
 		method: 'POST',
+		dataType: 'json',
 		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json'
-		},	//DOC: 4. Your application requests refresh and access tokens
-		data: JSON.stringify({//https://developer.spotify.com/web-api/authorization-guide/#implicit_grant_flow
-			reqUrl: 'https://accounts.spotify.com/api/token',
-			params: {
-				grant_type: 'client_credentials'
-			},
-			proxyHeaders: {// btoa()
-				'Authorization': 'Basic MTY5Y2EwNGU1ODk5NGQwNWJhOWRmYzcxMjE5YzQ2NGQ6YmUwNWI1ZTc3NGE2NDVhMjllNWYzZjFiOTQyMDExMDI'
-			}
-		})
-	}).then((data) => {
-		headers = {'Authorization': `${data.token_type} ${data.access_token}`}
+			'Authorization': 'Basic YTA1NTY3MTUyZTlmNDM0ZmI2M2U4YzRmYTMyOGI5NDc6NGYzZmY5MGQ5YjZkNDczN2EzNTM4Mjg2YTg2Mjc3ZGI='
+		},
+		data: {
+			grant_type: 'client_credentials'
+		}
+	}).then(function (data) {
+		headers = { 'Authorization': data.token_type + " " + data.access_token };
 		spotifyApp.chartsPlaylist(defaultList);
 	});
 }//end of tokenRequest
