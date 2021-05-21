@@ -1,4 +1,3 @@
-//TODO: add auto-horizontal scroll to the gallery in the future
 const spotifyApp = {};
 const canadaTop = "37i9dQZEVXbKj23U1GF4IR";
 const canadaViral = "37i9dQZEVXbKfIuOAZrk7G";
@@ -174,8 +173,8 @@ spotifyApp.playListListener = function(){
 		spotifyApp.chartsPlaylist(globalViral);
 	});
 }
-/* helper functions */
 
+/* helper functions */
 spotifyApp.transformMills = function(millis) {
 	let minutes = Math.floor(millis / 60000);
 	let seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -190,6 +189,7 @@ spotifyApp.emptyPage = function(){
 	$("#splashText").css("display","none");
 	$("#splashText").fadeIn();
 }
+
 /* Credit: remove hover effects on touch screen devices
 https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
 */
@@ -208,20 +208,21 @@ spotifyApp.removeHover = function(){
 		}
 	} catch (ex) {}
 }
+
 /*credit: pure css/html/js pop up window
 https://www.w3schools.com/howto/howto_css_modals.asp
 */
 spotifyApp.popWindow = function(){
-	//document.getElementById('populateList').append addes as string...
 	$('#populateList').append(spotifyApp.trackList);//jquery append as markup
 	// Get the modal and span
 	let modal = document.getElementById('myModal');
 	let btn = document.getElementById("myBtn");
-	let span = document.getElementsByClassName("close")[0];
+	// let span = document.getElementsByClassName("close")[0];
 	btn.onclick = function(e) {
 		e.preventDefault();
 		modal.style.display = "block";
-	}// When the user clicks on the button, open the modal,ow close 
+	}
+	// When the user clicks on the button, open the modal,ow close 
 	$(".close").click(function(){
 		modal.style.display = "none";
 	});
@@ -252,8 +253,41 @@ spotifyApp.removeLastComma = function(input){
 	return input.substring(0, lastIndex);
 }
 
+function attachGalleryScrollEventListener(){
+	let isDown = false;
+	const gallery = document.getElementById('gallery');
+	let start;
+	let scrollLeft;
+
+	gallery.addEventListener('mousedown', (e) => {
+		isDown = true;
+		gallery.classList.add('scrolling');
+		start = e.pageX - gallery.offsetLeft;
+		scrollLeft = gallery.scrollLeft;
+	});
+
+	gallery.addEventListener('mouseleave', () => {
+		isDown = false;
+		gallery.classList.remove('scrolling');
+	});
+
+	gallery.addEventListener('mouseup', () => {
+		isDown = false;
+		gallery.classList.remove('scrolling');
+	});
+	
+	gallery.addEventListener('mousemove', (e) => {
+		e.preventDefault();
+		if(!isDown) return;
+		let x = e.pageX - gallery.offsetLeft;
+		let walkSpeed = (x - start) * 3; 
+		gallery.scrollLeft = scrollLeft - walkSpeed;
+	});
+}
+
 $(function(){
 	spotifyApp.init();
+	attachGalleryScrollEventListener();
 	if ($(window).width() < 789) {
 		spotifyApp.removeHover();
 	}
