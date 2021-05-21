@@ -243,7 +243,7 @@ spotifyApp.overlayNav = function(){
 			}
 		}
 	});
-	$(".close").click(function(){
+	$('#overlay').on('click', '*', function() { 
 		document.getElementById("overlay").style.width = "0";
 	});
 }
